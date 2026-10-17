@@ -1,0 +1,21 @@
+<!doctype html><html><body style="margin:0;width:1200px;height:900px;overflow:hidden;font-family:Arial">
+<style>
+.sky{position:absolute;inset:0 0 62% 0;background:linear-gradient(#9cc7e8,#d9e9f3)}
+.roof{position:absolute;inset:30% 0 0 0;background:linear-gradient(#b7aa98,#9c8f7d)}
+.tank{position:absolute;left:880px;top:150px;width:170px;height:200px;background:linear-gradient(90deg,#2a2a2a,#555 40%,#2a2a2a);border-radius:18px 18px 8px 8px}
+.tank:before{content:"";position:absolute;left:-10px;right:-10px;top:-14px;height:30px;background:#333;border-radius:50%}
+.arr{position:absolute;left:90px;top:330px;width:960px;height:500px;transform:perspective(1400px) rotateX(38deg);transform-origin:bottom}
+.grid{display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(2,1fr);gap:10px;width:100%;height:100%;background:#c9c9c9;padding:10px;box-sizing:border-box}
+.p{background:repeating-linear-gradient(90deg,transparent 0 31px,#9fb4cc55 31px 33px),repeating-linear-gradient(0deg,transparent 0 31px,#9fb4cc55 31px 33px),linear-gradient(135deg,#1c2f52,#26457a 45%,#172744);border:5px solid #d7dbe0;position:relative;overflow:hidden}
+.dust{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 120%,#b39a73ee,#b39a7399 45%,transparent 75%)}
+.dust2{position:absolute;inset:0;background:linear-gradient(0deg,#a88f6ccc,#a88f6c55 55%,transparent 80%)}
+.bird{position:absolute;width:26px;height:20px;background:#f2efe6;border-radius:50% 40% 55% 45%;box-shadow:0 0 0 3px #d9d3c3}
+.shadow{position:absolute;left:600px;top:300px;width:520px;height:600px;background:#0008;filter:blur(8px);transform:skewX(-25deg);border-radius:30px}
+</style>
+<div class="sky"></div><div class="roof"></div><div class="tank"></div>
+<div class="arr"><div class="grid">
+<div class="p"><div class="dust2"></div></div><div class="p"><div class="dust2"></div><div class="bird" style="left:60px;top:40px"></div></div><div class="p"><div class="dust"></div></div><div class="p"><div class="dust"></div><div class="bird" style="left:30px;top:90px"></div><div class="bird" style="left:90px;top:30px;transform:scale(.7)"></div></div><div class="p"></div><div class="p"></div>
+<div class="p"><div class="dust2"></div><div class="dust"></div></div><div class="p"><div class="dust2"></div><div class="dust"></div></div><div class="p"><div class="dust2"></div><div class="bird" style="left:70px;top:70px"></div></div><div class="p"><div class="dust2"></div></div><div class="p"><div class="dust"></div></div><div class="p"></div>
+</div></div>
+<div class="shadow"></div>
+</body></html>

@@ -1,0 +1,53 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+:root{--ink:#39256f;--soft:#64708a;--rule:#e4ddf7;--sun:#7453d6;--sunbg:#e9e1ff;--blue:#39256f;--bluebg:#f6f3ff}
+*{box-sizing:border-box}body{margin:0;width:1600px;height:580px;font:400 19px/1.35 Arial,sans-serif;color:var(--ink);background:#ffffff;padding:36px 44px;position:relative}
+.lab{font-size:15px;color:var(--soft);font-weight:700;margin-bottom:10px}
+.box{border:2px solid var(--ink);border-radius:14px;padding:12px 16px;background:#fff;margin-bottom:14px}
+.box b{display:block;font-size:20px}.box span{font-size:15px;color:var(--soft)}
+.col{position:absolute;top:36px}
+.gcp{position:absolute;left:370px;top:36px;width:850px;border:2px dashed #b9a6f0;border-radius:20px;padding:18px 22px}
+.run{border:2px solid var(--blue);border-radius:16px;padding:14px 16px;background:var(--bluebg);margin-top:14px}
+.ag{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+.a{background:#fff;border:1.5px solid var(--rule);border-radius:10px;padding:9px 11px;font-size:15px}.a b{display:block;font-size:17px}
+.a.g{border-color:var(--sun);background:var(--sunbg)}
+.row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.g2{border-color:var(--sun);background:var(--sunbg)}
+.arrow{position:absolute;height:3px;background:var(--ink)}.arrow::after{content:"";position:absolute;right:-2px;top:-7px;border:8px solid transparent;border-left:12px solid var(--ink)}
+.note{font-size:14px;color:var(--soft);margin:14px 0 0}
+</style></head><body>
+<div class="col" style="left:44px;width:280px">
+ <div class="lab">The owner's phone</div>
+ <div class="box"><b>Language first</b><span>English, Urdu, Hindi, Chinese, Indonesian, Arabic</span></div>
+ <div class="box"><b>Up to 4 photos</b><span>camera or gallery: panels, inverter, wiring</span></div>
+ <div class="box"><b>Voice question</b><span>microphone, any language</span></div>
+ <div class="box"><b>App screenshots</b><span>up to 4, from the inverter app</span></div>
+</div>
+<div class="gcp">
+ <div class="lab">Google Cloud</div>
+ <div class="box" style="border-color:#7453d6;margin:0"><b>Firebase Hosting</b><span>mobile web app (serverless, no keys in the browser)</span></div>
+ <div class="run"><b style="font-size:20px">Firebase AI Logic: SolarSense agents</b>
+  <div class="ag">
+   <div class="a g"><b>Inspector</b>technician-grade diagnosis, boxes, evidence</div>
+   <div class="a"><b>Voice</b>speaks the answer in 6 languages</div>
+   <div class="a g"><b>Q&amp;A</b>hears questions, answers</div>
+   <div class="a g"><b>Reader</b>reads app screenshots and spots patterns</div>
+   <div class="a"><b>Energy model</b>expected vs actual, money lost</div>
+   <div class="a"><b>Reporter</b>PDF report for the technician</div>
+  </div></div>
+ <div class="row">
+  <div class="box g2" style="margin:0"><b>Gemini 2.5 Flash</b><span>vision, audio, structured JSON; auto back-up models</span></div>
+  <div class="box" style="margin:0"><b>Open-Meteo</b><span>real local sunshine, city search</span></div>
+  <div class="box" style="margin:0"><b>Cloud Firestore</b><span>reports and Q&amp;A, locked by security rules</span></div>
+ </div>
+ <p class="note">Photos are never stored, only the results. One AI request per check; samples work instantly with none.</p>
+</div>
+<div class="col" style="left:1260px;width:296px">
+ <div class="lab">What the owner gets</div>
+ <div class="box" style="border-color:var(--sun)"><b>Marked photo</b><span>a box around every problem</span></div>
+ <div class="box" style="border-color:var(--sun)"><b>Voice + captions</b><span>and a written card per issue</span></div>
+ <div class="box" style="border-color:var(--sun)"><b>Money lost</b><span>per month, in their currency</span></div>
+ <div class="box" style="border-color:var(--sun)"><b>Technician report</b><span>PDF, shared on WhatsApp</span></div>
+</div>
+<div class="arrow" style="left:328px;top:200px;width:36px"></div>
+<div class="arrow" style="left:1224px;top:200px;width:30px"></div>
+</body></html>

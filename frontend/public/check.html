@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SolarSense system check</title>
+<script src="config.js"></script>
+<style>
+  :root { --violet: #7453d6; --indigo: #39256f; --slate: #64708a; --mist: #f6f3ff; }
+  body { margin: 0; padding: 16px; background: var(--mist); color: var(--indigo); font: 15px/1.45 system-ui, sans-serif; }
+  main { max-width: 720px; margin: 0 auto; }
+  h1 { font-size: 22px; margin: 4px 0 4px; }
+  p.sub { color: var(--slate); margin: 0 0 16px; }
+  button { background: var(--violet); color: #fff; border: 0; border-radius: 999px; padding: 10px 18px; font: inherit; font-weight: 600; cursor: pointer; margin: 0 8px 8px 0; }
+  ol { padding: 0; list-style: none; }
+  li { background: #fff; border-radius: 10px; padding: 10px 12px; margin: 6px 0; border-left: 5px solid #ccc; }
+  li.ok { border-color: #2e7d4f; } li.bad { border-color: #c0352b; } li.run { border-color: #b0730c; }
+  li b { display: block; } li code { display: block; white-space: pre-wrap; word-break: break-word; color: var(--slate); font-size: 13px; margin-top: 4px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>SolarSense system check</h1>
+  <p class="sub">Tests each part on its own. Take a screenshot of the whole list and send it.</p>
+  <button id="run">Run checks</button><button id="mic">Test microphone (speak for 4 seconds)</button>
+  <ol id="out"></ol>
+</main>
+<script type="module">
+const SDK = "https://www.gstatic.com/firebasejs/12.19.0";
+const out = document.getElementById("out");
+const timeout = (p, ms) => Promise.race([p, new Promise((_, r) => setTimeout(() => r(new Error(`no answer after ${ms / 1000} s`)), ms))]);
+function row(name) {
+  const li = document.createElement("li"); li.className = "run"; li.innerHTML = `<b>${name}</b><code>running…</code>`; out.appendChild(li);
+  return (ok, text) => { li.className = ok ? "ok" : "bad"; li.querySelector("code").textContent = (ok ? "OK  " : "FAILED  ") + text; };
+}
+let fb = null;
+async function load() {
+  if (fb) return fb;
+  const done = row("1. Load Firebase");
+  const t = performance.now();
+  try {
+    const [{ initializeApp }, ai, fs] = await timeout(Promise.all([import(`${SDK}/firebase-app.js`), import(`${SDK}/firebase-ai.js`), import(`${SDK}/firebase-firestore.js`)]), 20000);
+    const app = initializeApp(window.FIREBASE_CONFIG);
+    fb = { ai, fs, app, aiInst: ai.getAI(app, { backend: new ai.GoogleAIBackend() }), db: fs.getFirestore(app) };
+    done(true, `${Math.round(performance.now() - t)} ms · project ${window.FIREBASE_CONFIG.projectId} · ${navigator.userAgent.slice(0, 80)}`);
+  } catch (e) { done(false, String(e?.message || e)); throw e; }
+  return fb;
+}
+async function ask(model, contents, config = {}, ms = 40000) {
+  const m = fb.ai.getGenerativeModel(fb.aiInst, { model, generationConfig: config });
+  const t = performance.now();
+  const r = await timeout(m.generateContent(contents), ms);
+  return { text: r.response.text(), ms: Math.round(performance.now() - t) };
+}
+document.getElementById("run").onclick = async () => {
+  out.innerHTML = "";
+  try { await load(); } catch { return; }
+  for (const [n, model, cfg] of [
+    ["2. Gemini 2.5 Flash", "gemini-2.5-flash", {}],
+    ["3. Gemini 2.5 Flash, fast mode", "gemini-2.5-flash", { thinkingConfig: { thinkingBudget: 0 } }],
+    ["4. Gemini Flash (latest)", "gemini-flash-latest", {}],
+    ["5. Gemini 2.5 Flash-Lite", "gemini-2.5-flash-lite", {}],
+    ["5b. Gemini Flash-Lite (latest)", "gemini-flash-lite-latest", {}],
+    ["5c. Gemini 3 Flash preview", "gemini-3-flash-preview", {}],
+    ["5d. Gemini 2.0 Flash", "gemini-2.0-flash", {}],
+  ]) {
+    const done = row(n);
+    try { const r = await ask(model, "Reply with just the word OK.", cfg); done(true, `${r.ms} ms · "${r.text.trim().slice(0, 40)}"`); }
+    catch (e) { done(false, String(e?.message || e)); }
+  }
+  const done6 = row("6. Gemini structured answer (JSON)");
+  try {
+    const S = fb.ai.Schema;
+    const r = await ask("gemini-2.5-flash-lite", "Answer in Urdu: is it safe to wash solar panels at noon?",
+      { responseMimeType: "application/json", responseSchema: S.object({ properties: { answer: S.string() } }), thinkingConfig: { thinkingBudget: 0 } });
+    done6(true, `${r.ms} ms · ${r.text.slice(0, 120)}`);
+  } catch (e) { done6(false, String(e?.message || e)); }
+  const done7 = row("7. Firestore");
+  try {
+    const t = performance.now();
+    const snap = await timeout(fb.fs.getDoc(fb.fs.doc(fb.db, "samples", "dusty-en-v2")), 10000);
+    done7(true, `${Math.round(performance.now() - t)} ms · reachable (document ${snap.exists() ? "found" : "not created yet, that's fine"})`);
+  } catch (e) { done7(false, String(e?.code || e?.message || e)); }
+};
+document.getElementById("mic").onclick = async () => {
+  out.innerHTML = "";
+  const done = row("Microphone");
+  let blob;
+  try {
+    if (!window.isSecureContext) throw new Error("page is not https, so the browser blocks the mic");
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    const rec = new MediaRecorder(stream), chunks = [];
+    rec.ondataavailable = (e) => e.data.size && chunks.push(e.data);
+    await new Promise((res) => { rec.onstop = res; rec.start(); setTimeout(() => rec.stop(), 4000); });
+    stream.getTracks().forEach((t) => t.stop());
+    blob = new Blob(chunks, { type: rec.mimeType });
+    done(true, `recorded ${Math.round(blob.size / 1024)} KB as ${rec.mimeType || "unknown type"}`);
+  } catch (e) { done(false, `${e?.name || ""} ${e?.message || e}`); return; }
+  const done2 = row("Convert to WAV");
+  let wav;
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const buf = await ctx.decodeAudioData(await blob.arrayBuffer());
+    const rate = 16000, off = new OfflineAudioContext(1, Math.ceil(buf.duration * rate), rate);
+    const src = off.createBufferSource(); src.buffer = buf; src.connect(off.destination); src.start();
+    const pcm = (await off.startRendering()).getChannelData(0);
+    const v = new DataView(new ArrayBuffer(44 + pcm.length * 2)), w = (o, s) => [...s].forEach((c, i) => v.setUint8(o + i, c.charCodeAt(0)));
+    w(0, "RIFF"); v.setUint32(4, 36 + pcm.length * 2, true); w(8, "WAVE"); w(12, "fmt "); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true);
+    v.setUint32(24, rate, true); v.setUint32(28, rate * 2, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true); w(36, "data"); v.setUint32(40, pcm.length * 2, true);
+    for (let i = 0; i < pcm.length; i++) v.setInt16(44 + i * 2, Math.max(-1, Math.min(1, pcm[i])) * 0x7fff, true);
+    wav = new Blob([v], { type: "audio/wav" });
+    done2(true, `${buf.duration.toFixed(1)} s of audio`);
+  } catch (e) { done2(false, String(e?.message || e)); return; }
+  const done3 = row("Gemini hears it");
+  try {
+    await load();
+    const data = await new Promise((res) => { const fr = new FileReader(); fr.onload = () => res(String(fr.result).split(",")[1]); fr.readAsDataURL(wav); });
+    const r = await ask("gemini-2.5-flash-lite", ["Write down exactly what is said in this audio. If nothing is said, reply: (silence)", { inlineData: { data, mimeType: "audio/wav" } }],
+      { thinkingConfig: { thinkingBudget: 0 } });
+    done3(true, `${r.ms} ms · "${r.text.trim().slice(0, 160)}"`);
+  } catch (e) { done3(false, String(e?.message || e)); }
+};
+</script>
+</body>
+</html>

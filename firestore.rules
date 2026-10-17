@@ -1,0 +1,37 @@
+rules_version = '2';
+// No-card version: the browser writes to Firestore directly, so every rule is narrow.
+// Reports can be created but never read back, changed or deleted by anyone.
+// Cached sample results and translated interface text can be read, and created once.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function stamped() { return request.resource.data.created == request.time; }
+
+    match /inspections/{id} {
+      allow create: if stamped()
+        && request.resource.data.keys().hasOnly(['lang', 'media', 'source', 'diagnosis', 'created'])
+        && request.resource.data.diagnosis is map;
+      match /qa/{q} {
+        allow create: if stamped()
+          && request.resource.data.keys().hasOnly(['question_heard', 'answer', 'spoken_script', 'created']);
+      }
+    }
+    match /checks/{id} {
+      allow create: if stamped()
+        && request.resource.data.keys().hasOnly(['lang', 'reading', 'facts', 'explanation', 'created']);
+    }
+    match /samples/{key} {
+      allow read: if true;
+      allow create: if stamped() && key.matches('(dusty|fault|cracked)-[a-z]{2,3}(-v[0-9]+)?')
+        && request.resource.data.keys().hasOnly(['lang', 'diagnosis', 'created']);
+    }
+    match /ui/{key} {
+      allow read: if true;
+      allow create: if stamped() && key.matches('[a-z]{2,3}-[0-9a-f]{40}')
+        && request.resource.data.keys().hasOnly(['lang', 'strings', 'created'])
+        && request.resource.data.strings is map;
+    }
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

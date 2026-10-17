@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="theme-color" content="#7453d6">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SolarSense: show your solar problem, hear what's wrong</title>
+<meta name="description" content="SolarSense is a talking AI solar technician. Show a photo or video of your solar system and hear what's wrong, in your language.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=Noto+Sans:wght@400;500;600&family=Noto+Nastaliq+Urdu:wght@400;600&family=Noto+Sans+Arabic:wght@400;600&family=Noto+Sans+Devanagari:wght@400;600&family=Noto+Sans+Bengali:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="logo.svg">
+<script src="config.js"></script>
+</head>
+<body>
+<!-- Step 0: language comes first -->
+<section id="lang-screen" class="lang-screen" aria-labelledby="lang-title">
+  <div class="lang-inner">
+    <button class="back" id="lang-back" hidden><span aria-hidden="true">←</span> <span data-t="back">Back</span></button>
+    <div class="brand big"><img src="logo.svg" alt="">SolarSense</div>
+    <h1 id="lang-title">Choose your language</h1>
+    <p class="lang-sub">SolarSense will write and speak to you in this language. You can change it later.</p>
+    <div class="lang-grid" id="lang-grid"></div>
+  </div>
+</section>
+
+<div id="app" hidden>
+  <header class="top">
+    <a class="brand" href="#" id="home-link"><img src="logo.svg" alt="">SolarSense</a>
+    <button class="lang-chip" id="lang-chip" aria-label="Change language"></button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1 data-t="hero_title">Show your solar problem. Hear what's wrong.</h1>
+      <p data-t="hero_sub">Take a photo of your panels, inverter screen or wiring. SolarSense finds the problem, marks it, and explains it out loud.</p>
+    </section>
+
+    <nav class="modes" role="tablist">
+      <button role="tab" aria-selected="true" data-mode="inspect" data-t="tab_inspect">Inspect a problem</button>
+      <button role="tab" aria-selected="false" data-mode="perf" data-t="tab_perf">Check performance</button>
+    </nav>
+
+    <!-- A. Talking inspection -->
+    <section id="mode-inspect" class="mode">
+      <div class="capture">
+        <label class="shoot" id="shoot">
+          <input type="file" id="cam" accept="image/*" capture="environment" hidden>
+          <span class="shoot-icon" aria-hidden="true"></span>
+          <b data-t="take">Take a photo</b>
+          <small data-t="take_hint">Get close and keep it in focus</small>
+        </label>
+        <label class="upload">
+          <input type="file" id="upload" accept="image/*" multiple hidden>
+          <span data-t="upload">Upload from gallery</span>
+          <small data-t="upload_hint">A photo, or a screenshot of an error</small>
+        </label>
+      </div>
+      <div class="tray" id="tray" hidden>
+        <div class="tray-row" id="tray-row"></div>
+        <p class="fine" data-t="max_photos">You can add up to 4 photos of the same system, for example the panels, the inverter screen and the wiring.</p>
+        <div class="tray-actions"><button class="btn" id="tray-go" data-t="tray_go">Check these photos</button>
+        <button class="btn ghost" id="tray-clear" data-t="tray_clear">Clear photos</button></div>
+      </div>
+      <div class="samples">
+        <p data-t="samples">Or try a sample</p>
+        <div class="sample-row" id="sample-row"></div>
+      </div>
+    </section>
+
+    <!-- B. Performance check -->
+    <section id="mode-perf" class="mode" hidden>
+      <form id="perf-form" class="perf-form" novalidate>
+        <div class="field file-field">
+          <span data-t="perf_shot">Screenshots of your inverter app</span>
+          <div class="tray-row" id="perf-tray"></div>
+          <label class="add-shot" id="perf-add"><span aria-hidden="true">＋</span> <span data-t="perf_add">Add a screenshot</span><input type="file" id="perf-file" accept="image/*" multiple hidden></label>
+          <small class="fine" data-t="perf_multi">You can add up to 4 screenshots, for example today's screen and this month's screen.</small>
+          <button type="button" class="linkish" id="perf-sample" data-t="perf_sample">Use the sample screenshot</button>
+          <small class="err" id="err-file" hidden></small>
+        </div>
+        <details class="manual" id="manual">
+          <summary data-t="manual_h">No screenshot? Type your numbers</summary>
+          <p class="fine" data-t="manual_hint">Copy them from your inverter or its app. One of the two is enough; no AI is needed.</p>
+          <div class="field-row">
+            <label class="field"><span data-t="kwh_today">Energy today (kWh)</span><input type="number" id="kwh-today" min="0" step="0.1" inputmode="decimal"></label>
+            <label class="field"><span data-t="kwh_month">Energy this month so far (kWh)</span><input type="number" id="kwh-month" min="0" step="0.1" inputmode="decimal"></label>
+          </div>
+        </details>
+        <label class="field">
+          <span data-t="perf_place">Where is the system?</span>
+          <div class="place-row">
+            <input type="text" id="place" autocomplete="off" data-tp="place_ph" placeholder="Town or city">
+            <button type="button" class="ghost" id="geo" data-t="perf_geo">Use my location</button>
+          </div>
+          <ul class="suggest" id="suggest" hidden></ul>
+          <small class="err" id="err-place" hidden></small>
+        </label>
+        <div class="field-row">
+          <label class="field">
+            <span data-t="perf_rate">Electricity price per unit (kWh)</span>
+            <input type="number" id="rate" min="0" step="0.01" inputmode="decimal" placeholder="50">
+            <small class="err" id="err-rate" hidden></small>
+          </label>
+          <label class="field small">
+            <span data-t="perf_currency">Currency</span>
+            <select id="currency"></select>
+          </label>
+          <label class="field small">
+            <span data-t="perf_size">System size (kW)</span>
+            <input type="number" id="capacity" min="0" step="0.1" inputmode="decimal" placeholder="auto">
+          </label>
+        </div>
+        <button class="btn" type="submit" data-t="perf_go">Check my system</button>
+      </form>
+    </section>
+
+    <p class="error" id="error" role="alert" hidden></p>
+
+    <section class="working" id="working" hidden aria-live="polite">
+      <div class="scan" aria-hidden="true"></div>
+      <p id="working-text"></p>
+    </section>
+
+    <!-- Result: inspection -->
+    <section class="result" id="result" hidden>
+      <div class="result-grid">
+        <figure class="media" id="media"></figure>
+        <div class="verdict-col">
+          <div class="verdict" id="verdict"></div>
+          <div class="voice" id="voice">
+            <button class="play" id="play" aria-label="Play"><span></span></button>
+            <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <span class="voice-label" id="voice-label"></span>
+          </div>
+          <p class="captions" id="captions" aria-live="polite"></p>
+        </div>
+      </div>
+
+      <h2 data-t="issues_h">What I found</h2>
+      <ol class="issues" id="issues"></ol>
+
+      <div class="extra" id="extra" hidden></div>
+      <div class="safety" id="safety" hidden></div>
+
+      <h2 data-t="actions_h">What to do</h2>
+      <ul class="actions" id="actions"></ul>
+
+      <div class="ask">
+        <h2 data-t="ask_h">Ask a follow-up</h2>
+        <div class="ask-row">
+          <button class="mic" id="mic" aria-pressed="false"><span class="mic-dot" aria-hidden="true"></span><canvas class="mic-wave" id="mic-wave" width="120" height="28" aria-hidden="true"></canvas><span id="mic-label" data-t="mic_start">Tap and ask</span></button>
+          <form id="ask-form" class="ask-form">
+            <input type="text" id="ask-text" data-tp="ask_placeholder" placeholder="Or type your question">
+            <button class="btn" type="submit" data-t="send">Send</button>
+          </form>
+        </div>
+        <div class="qa" id="qa"></div>
+      </div>
+
+      <div class="share">
+        <button class="btn" id="pdf-share" data-t="share_wa">Share report on WhatsApp</button>
+        <button class="btn ghost" id="pdf" data-t="download_pdf">Download report (PDF)</button>
+        <button class="btn ghost" id="again" data-t="again">Check something else</button>
+      </div>
+    </section>
+
+    <!-- Result: performance -->
+    <section class="result" id="perf-result" hidden>
+      <div class="loss" id="loss"></div>
+      <div class="compare" id="compare"></div>
+      <div class="voice" id="voice2">
+        <button class="play" id="play2" aria-label="Play"><span></span></button>
+        <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <span class="voice-label" id="voice-label2"></span>
+      </div>
+      <p class="captions" id="captions2" aria-live="polite"></p>
+      <h2 data-t="causes_h" id="causes-h">Likely reasons</h2>
+      <ul class="causes" id="causes"></ul>
+      <h2 data-t="actions_h">What to do</h2>
+      <ul class="actions" id="actions2"></ul>
+      <p class="fine" id="fine"></p>
+      <div class="share"><button class="btn ghost" id="again2" data-t="again">Check something else</button></div>
+    </section>
+  </main>
+
+  <footer class="foot" data-t="footer">Built on Google Cloud: Gemini sees, reads and listens through Firebase AI Logic; Firestore keeps the reports; Firebase Hosting serves the app. Photos and videos are not stored.</footer>
+  <p class="ver">v13</p>
+</div>
+
+<!-- In-app camera -->
+<div class="cam" id="cam-modal" hidden role="dialog" aria-modal="true">
+  <video id="cam-video" playsinline muted autoplay></video>
+  <div class="cam-bar">
+    <button class="ghost" id="cam-close" data-t="cam_close">Done</button>
+    <button class="cam-shoot" id="cam-shoot" aria-label="Take photo"><span></span></button>
+    <button class="ghost" id="cam-flip" data-t="cam_flip">Switch camera</button>
+  </div>
+  <p class="cam-count" id="cam-count"></p>
+</div>
+<script src="i18n.js"></script>
+<script type="module" src="firebase-api.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

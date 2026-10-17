@@ -1,0 +1,35 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+:root{--ink:#39256f;--soft:#64708a;--rule:#e4ddf7;--sun:#7453d6;--sunbg:#e9e1ff;--blue:#39256f;--bluebg:#f6f3ff}
+*{box-sizing:border-box}body{margin:0;width:1600px;height:540px;font:400 18px/1.35 Arial,sans-serif;color:var(--ink);background:#ffffff;padding:34px 40px}
+h2{font-size:22px;margin:0 0 14px}
+.first{display:inline-block;border:2px solid #7453d6;background:#e9e1ff;border-radius:12px;padding:10px 16px;font-size:18px;margin-bottom:22px}
+.flow{display:flex;gap:16px;align-items:stretch;margin-bottom:34px}
+.s{flex:1;border:2px solid var(--ink);border-radius:12px;padding:12px 14px;position:relative;background:#fff}
+.s b{display:block;font-size:18px;margin-bottom:3px}.s span{font-size:14.5px;color:var(--soft)}
+.s .n{position:absolute;top:-13px;left:12px;background:var(--ink);color:#fff;border-radius:99px;font-size:13px;font-weight:700;padding:2px 9px;font-style:normal}
+.s.ai{border-color:var(--sun);background:var(--sunbg)}.s.ai .n{background:var(--sun);color:#fff}
+.s.code{border-color:var(--blue);background:var(--bluebg)}.s.code .n{background:var(--blue)}
+.s+.s::before{content:"";position:absolute;left:-15px;top:50%;border:7px solid transparent;border-left:10px solid var(--ink);transform:translateY(-50%)}
+.legend{display:flex;gap:28px;font-size:15px;color:var(--soft);margin-top:-6px}
+.legend i{display:inline-block;width:16px;height:16px;border-radius:4px;vertical-align:-3px;margin-right:6px;border:2px solid}
+</style></head><body>
+<div class="first"><b>First screen:</b> choose your language (6 options). Every text, caption and voice after this uses it.</div>
+<h2>A. Talking inspection: show the problem, hear the answer</h2>
+<div class="flow">
+ <div class="s"><i class="n">1</i><b>Show it</b><span>Up to 4 photos of panels, inverter screen or wiring</span></div>
+ <div class="s ai"><i class="n">2</i><b>Gemini inspects</b><span>Finds dust, shade, cracks, hotspots, burnt cables, reads error codes</span></div>
+ <div class="s ai"><i class="n">3</i><b>Marks the photo</b><span>Boxes around each problem, with severity and likely cause</span></div>
+ <div class="s ai"><i class="n">4</i><b>Speaks and shows</b><span>Voice in your language, with captions and a written card for each issue</span></div>
+ <div class="s ai"><i class="n">5</i><b>Ask by voice</b><span>Hold the mic, ask a follow-up, hear and read the answer</span></div>
+ <div class="s code"><i class="n">6</i><b>Act</b><span>Safe steps for you, or a PDF report for the technician on WhatsApp. Saved in Firestore</span></div>
+</div>
+<h2>B. Performance check: is my system making what it should?</h2>
+<div class="flow">
+ <div class="s"><i class="n">1</i><b>Screenshot</b><span>Inverter app screen, plus location, electricity rate and currency</span></div>
+ <div class="s ai"><i class="n">2</i><b>Gemini reads it</b><span>Capacity, daily and monthly kWh, fault codes, any app brand</span></div>
+ <div class="s code"><i class="n">3</i><b>Expected output</b><span>Real sunshine at your location (Open-Meteo) × capacity × 0.78</span></div>
+ <div class="s code"><i class="n">4</i><b>The gap in your money</b><span>Actual vs expected, kWh and money lost per month in your currency</span></div>
+ <div class="s ai"><i class="n">5</i><b>Explains and speaks</b><span>Likely causes with evidence and how to check, as text and voice</span></div>
+</div>
+<div class="legend"><span><i style="border-color:#7453d6;background:#e9e1ff"></i>Gemini (AI)</span><span><i style="border-color:#39256f;background:#f6f3ff"></i>App code (Firebase)</span><span><i style="border-color:#13243a"></i>User</span></div>
+</body></html>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="SolarSense">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7453D6"/>
+      <stop offset="1" stop-color="#39256F"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="30" fill="url(#g)"/>
+  <circle cx="46" cy="50" r="19" fill="#F6F3FF"/>
+  <g fill="none" stroke="#E9E1FF" stroke-linecap="round">
+    <path d="M73.6 32.6 A33 33 0 0 1 73.6 67.4" stroke-width="7"/>
+    <path d="M84.4 24.4 A46 46 0 0 1 84.4 75.6" stroke-width="7" opacity=".55"/>
+  </g>
+  <path d="M30 88 H100 L108 110 H22 Z" fill="#FFFFFF"/>
+  <g stroke="#39256F" stroke-width="3.5" stroke-linecap="round">
+    <path d="M26 99 H104"/>
+    <path d="M53.3 88 L50.7 110"/>
+    <path d="M76.7 88 L79.3 110"/>
+  </g>
+</svg>

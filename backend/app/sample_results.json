@@ -1,0 +1,1535 @@
+{
+ "samples": [
+  {
+   "id": "dusty",
+   "title": "Dusty rooftop panels",
+   "file": "dusty_panels.jpg",
+   "kind": "photo",
+   "result": {
+    "en": {
+     "subject": "panels",
+     "summary": "Your panels are dirty and partly shaded, so they're losing a noticeable amount of power.",
+     "overall_severity": "medium",
+     "issues": [
+      {
+       "title": "Heavy dust on lower panels",
+       "detail": "A brown layer of dust covers the bottom of most panels in the left half of the array.",
+       "severity": "medium",
+       "likely_cause": "Dust settling over weeks without cleaning, worst at the lower edge where rainwater leaves it behind.",
+       "box_2d": [
+        690,
+        82,
+        920,
+        520
+       ],
+       "where": "Lower half of the left-side panels",
+       "confidence": "high"
+      },
+      {
+       "title": "Bird droppings",
+       "detail": "Several white spots on the top-row panels.",
+       "severity": "low",
+       "likely_cause": "Birds sitting on the frame. Each spot shades a few cells.",
+       "box_2d": [
+        580,
+        290,
+        650,
+        350
+       ],
+       "where": "Top row, second and fourth panels",
+       "confidence": "high"
+      },
+      {
+       "title": "Bird droppings",
+       "detail": "Another spot on the lower row.",
+       "severity": "low",
+       "likely_cause": "Birds sitting on the frame.",
+       "box_2d": [
+        760,
+        400,
+        820,
+        450
+       ],
+       "where": "Bottom row, middle panel",
+       "confidence": "medium"
+      },
+      {
+       "title": "Shadow from the water tank",
+       "detail": "The tank's shadow falls across the right side of the array.",
+       "severity": "medium",
+       "likely_cause": "The water tank stands south-west of the panels, so it shades them in the afternoon.",
+       "box_2d": [
+        580,
+        500,
+        920,
+        880
+       ],
+       "where": "Right side of the array",
+       "confidence": "high"
+      }
+     ],
+     "output_loss_low_pct": 15,
+     "output_loss_high_pct": 30,
+     "actions": [
+      {
+       "step": "Wash the panels with plain water and a soft brush early in the morning, before they get hot. No soap or detergent.",
+       "who": "you"
+      },
+      {
+       "step": "Clean them every two to three weeks in dusty months.",
+       "who": "you"
+      },
+      {
+       "step": "Ask your installer whether the water tank can be moved, or the shaded panels re-wired so the shadow doesn't pull down the whole string.",
+       "who": "technician"
+      }
+     ],
+     "safety_warning": "Only clean from a safe position. Don't walk on the panels, and don't clean them at midday when the glass is very hot.",
+     "call_technician": false,
+     "confidence": "high",
+     "spoken_script": "Good news first: nothing here looks broken. But your panels are quite dirty and part of them sits in the water tank's shadow, so you're probably losing somewhere between fifteen and thirty percent of your power. Start with a simple wash: early in the morning, plain water and a soft brush, no soap. Do it every two to three weeks when it's dusty. The shadow is a bigger job, so ask your installer if the tank can be moved or the panels rewired.",
+     "looks_ok": [
+      "No cracked glass",
+      "Frames and mounting look straight"
+     ],
+     "next_photo": "the panels from closer up after cleaning, so I can check the cells for damage"
+    },
+    "ur": {
+     "subject": "panels",
+     "summary": "آپ کے پینلز گندے ہیں اور کچھ حصے پر سایہ ہے، اس لیے بجلی کافی کم بن رہی ہے۔",
+     "overall_severity": "medium",
+     "issues": [
+      {
+       "title": "نچلے پینلز پر زیادہ گرد",
+       "detail": "بائیں طرف کے زیادہ تر پینلز کے نچلے حصے پر بھوری گرد کی تہہ جمی ہے۔",
+       "severity": "medium",
+       "likely_cause": "کئی ہفتوں سے صفائی نہیں ہوئی، اور بارش کا پانی گرد کو نیچے کے کنارے پر چھوڑ دیتا ہے۔",
+       "box_2d": [
+        690,
+        82,
+        920,
+        520
+       ],
+       "where": "بائیں طرف کے پینلز کا نچلا حصہ",
+       "confidence": "high"
+      },
+      {
+       "title": "پرندوں کی بیٹ",
+       "detail": "اوپر والی قطار کے پینلز پر سفید دھبے ہیں۔",
+       "severity": "low",
+       "likely_cause": "پرندے فریم پر بیٹھتے ہیں۔ ہر دھبہ کچھ سیلز پر سایہ کرتا ہے۔",
+       "box_2d": [
+        580,
+        290,
+        650,
+        350
+       ],
+       "where": "اوپر والی قطار، دوسرا اور چوتھا پینل",
+       "confidence": "high"
+      },
+      {
+       "title": "پرندوں کی بیٹ",
+       "detail": "نچلی قطار میں بھی ایک دھبہ ہے۔",
+       "severity": "low",
+       "likely_cause": "پرندے فریم پر بیٹھتے ہیں۔",
+       "box_2d": [
+        760,
+        400,
+        820,
+        450
+       ],
+       "where": "نچلی قطار، درمیانی پینل",
+       "confidence": "medium"
+      },
+      {
+       "title": "پانی کی ٹینکی کا سایہ",
+       "detail": "ٹینکی کا سایہ پینلز کے دائیں حصے پر پڑ رہا ہے۔",
+       "severity": "medium",
+       "likely_cause": "ٹینکی پینلز کے جنوب مغرب میں ہے، اس لیے دوپہر کے بعد سایہ کرتی ہے۔",
+       "box_2d": [
+        580,
+        500,
+        920,
+        880
+       ],
+       "where": "پینلز کا دایاں حصہ",
+       "confidence": "high"
+      }
+     ],
+     "output_loss_low_pct": 15,
+     "output_loss_high_pct": 30,
+     "actions": [
+      {
+       "step": "صبح سویرے، پینلز گرم ہونے سے پہلے، صاف پانی اور نرم برش سے دھوئیں۔ صابن یا ڈٹرجنٹ استعمال نہ کریں۔",
+       "who": "you"
+      },
+      {
+       "step": "گرد والے مہینوں میں ہر دو سے تین ہفتے بعد صفائی کریں۔",
+       "who": "you"
+      },
+      {
+       "step": "اپنے انسٹالر سے پوچھیں کہ کیا ٹینکی ہٹائی جا سکتی ہے یا پینلز کی وائرنگ بدلی جا سکتی ہے تاکہ سایہ پورے سسٹم کو متاثر نہ کرے۔",
+       "who": "technician"
+      }
+     ],
+     "safety_warning": "صرف محفوظ جگہ سے صفائی کریں۔ پینلز پر نہ چلیں، اور دوپہر کو جب شیشہ بہت گرم ہو تو صفائی نہ کریں۔",
+     "call_technician": false,
+     "confidence": "high",
+     "spoken_script": "اچھی خبر یہ ہے کہ کوئی چیز ٹوٹی ہوئی نظر نہیں آ رہی۔ لیکن آپ کے پینلز کافی گندے ہیں اور ان کے کچھ حصے پر پانی کی ٹینکی کا سایہ ہے، اس لیے آپ کی تقریباً پندرہ سے تیس فیصد بجلی ضائع ہو رہی ہے۔ سب سے پہلے صبح سویرے صاف پانی اور نرم برش سے پینلز دھوئیں، صابن کے بغیر۔ گرد والے دنوں میں ہر دو تین ہفتے بعد یہ کریں۔ سائے کے لیے اپنے انسٹالر سے بات کریں کہ ٹینکی ہٹ سکتی ہے یا وائرنگ بدلی جا سکتی ہے۔",
+     "looks_ok": [
+      "شیشہ ٹوٹا ہوا نہیں",
+      "فریم اور اسٹینڈ سیدھے لگ رہے ہیں"
+     ],
+     "next_photo": "صفائی کے بعد پینلز کی قریب سے تصویر، تاکہ سیلز کا نقصان چیک ہو سکے"
+    },
+    "hi": {
+     "subject": "panels",
+     "summary": "आपके पैनल गंदे हैं और कुछ हिस्से पर छाया पड़ रही है, इसलिए बिजली काफ़ी कम बन रही है।",
+     "overall_severity": "medium",
+     "issues": [
+      {
+       "title": "निचले पैनलों पर भारी धूल",
+       "detail": "बाईं ओर के ज़्यादातर पैनलों के निचले हिस्से पर धूल की भूरी परत जमी है।",
+       "severity": "medium",
+       "likely_cause": "हफ़्तों से सफ़ाई न होने से धूल जमी है, सबसे ज़्यादा निचले किनारे पर जहाँ बारिश का पानी उसे छोड़ जाता है।",
+       "box_2d": [
+        690,
+        82,
+        920,
+        520
+       ],
+       "where": "बाईं ओर के पैनलों का निचला आधा हिस्सा",
+       "confidence": "high"
+      },
+      {
+       "title": "पक्षियों की बीट",
+       "detail": "ऊपर की पंक्ति के पैनलों पर कई सफ़ेद धब्बे हैं।",
+       "severity": "low",
+       "likely_cause": "पक्षी फ़्रेम पर बैठते हैं। हर धब्बा कुछ सेल पर छाया डालता है।",
+       "box_2d": [
+        580,
+        290,
+        650,
+        350
+       ],
+       "where": "ऊपर की पंक्ति, दूसरा और चौथा पैनल",
+       "confidence": "high"
+      },
+      {
+       "title": "पक्षियों की बीट",
+       "detail": "निचली पंक्ति पर एक और धब्बा है।",
+       "severity": "low",
+       "likely_cause": "पक्षी फ़्रेम पर बैठते हैं।",
+       "box_2d": [
+        760,
+        400,
+        820,
+        450
+       ],
+       "where": "निचली पंक्ति, बीच का पैनल",
+       "confidence": "medium"
+      },
+      {
+       "title": "पानी की टंकी की छाया",
+       "detail": "टंकी की छाया पैनलों के दाहिने हिस्से पर पड़ रही है।",
+       "severity": "medium",
+       "likely_cause": "टंकी पैनलों के दक्षिण-पश्चिम में है, इसलिए दोपहर बाद छाया डालती है।",
+       "box_2d": [
+        580,
+        500,
+        920,
+        880
+       ],
+       "where": "पैनलों का दाहिना हिस्सा",
+       "confidence": "high"
+      }
+     ],
+     "output_loss_low_pct": 15,
+     "output_loss_high_pct": 30,
+     "actions": [
+      {
+       "step": "सुबह जल्दी, पैनल गर्म होने से पहले, सादे पानी और नरम ब्रश से धोएँ। साबुन या डिटर्जेंट नहीं।",
+       "who": "you"
+      },
+      {
+       "step": "धूल भरे महीनों में हर दो-तीन हफ़्ते में साफ़ करें।",
+       "who": "you"
+      },
+      {
+       "step": "अपने इंस्टॉलर से पूछें कि क्या टंकी हटाई जा सकती है, या छाया वाले पैनलों की वायरिंग बदली जा सकती है ताकि पूरी स्ट्रिंग पर असर न पड़े।",
+       "who": "technician"
+      }
+     ],
+     "safety_warning": "सिर्फ़ सुरक्षित जगह से साफ़ करें। पैनलों पर न चलें, और दोपहर में जब शीशा बहुत गर्म हो तब साफ़ न करें।",
+     "call_technician": false,
+     "confidence": "high",
+     "spoken_script": "पहले अच्छी खबर: यहाँ कुछ भी टूटा हुआ नहीं दिखता। लेकिन आपके पैनल काफ़ी गंदे हैं और उनका कुछ हिस्सा पानी की टंकी की छाया में है, इसलिए शायद आपकी पंद्रह से तीस प्रतिशत बिजली कम बन रही है। शुरुआत आसान धुलाई से करें: सुबह जल्दी, सादा पानी और नरम ब्रश, साबुन नहीं। धूल के मौसम में हर दो-तीन हफ़्ते में ऐसा करें। छाया बड़ा काम है, इसलिए अपने इंस्टॉलर से पूछें कि क्या टंकी हटाई जा सकती है या पैनलों की वायरिंग बदली जा सकती है।",
+     "looks_ok": [
+      "शीशा टूटा नहीं है",
+      "फ़्रेम और माउंटिंग सीधे दिखते हैं"
+     ],
+     "next_photo": "सफ़ाई के बाद पैनलों की पास से फ़ोटो, ताकि सेल में कोई नुकसान जाँचा जा सके"
+    },
+    "zh": {
+     "subject": "panels",
+     "summary": "您的光伏板很脏，部分被遮挡，因此发电量明显下降。",
+     "overall_severity": "medium",
+     "issues": [
+      {
+       "title": "下方光伏板积灰严重",
+       "detail": "左半部分大多数光伏板底部覆盖着一层褐色灰尘。",
+       "severity": "medium",
+       "likely_cause": "几周未清洁导致灰尘堆积，雨水流过的下边缘最严重。",
+       "box_2d": [
+        690,
+        82,
+        920,
+        520
+       ],
+       "where": "左侧光伏板的下半部分",
+       "confidence": "high"
+      },
+      {
+       "title": "鸟粪",
+       "detail": "上排光伏板上有几处白色斑点。",
+       "severity": "low",
+       "likely_cause": "鸟在边框上停留。每个斑点都会遮挡几片电池。",
+       "box_2d": [
+        580,
+        290,
+        650,
+        350
+       ],
+       "where": "上排第二和第四块板",
+       "confidence": "high"
+      },
+      {
+       "title": "鸟粪",
+       "detail": "下排还有一处斑点。",
+       "severity": "low",
+       "likely_cause": "鸟在边框上停留。",
+       "box_2d": [
+        760,
+        400,
+        820,
+        450
+       ],
+       "where": "下排中间那块板",
+       "confidence": "medium"
+      },
+      {
+       "title": "水箱阴影",
+       "detail": "水箱的影子落在阵列右侧。",
+       "severity": "medium",
+       "likely_cause": "水箱位于光伏板西南方，所以下午会遮挡光伏板。",
+       "box_2d": [
+        580,
+        500,
+        920,
+        880
+       ],
+       "where": "阵列右侧",
+       "confidence": "high"
+      }
+     ],
+     "output_loss_low_pct": 15,
+     "output_loss_high_pct": 30,
+     "actions": [
+      {
+       "step": "清晨光伏板变热之前，用清水和软刷清洗，不要用肥皂或清洁剂。",
+       "who": "you"
+      },
+      {
+       "step": "多尘的月份每两到三周清洗一次。",
+       "who": "you"
+      },
+      {
+       "step": "请安装商评估能否移动水箱，或重新接线，让阴影不拖累整串组件。",
+       "who": "technician"
+      }
+     ],
+     "safety_warning": "只在安全的位置清洁。不要踩在光伏板上，也不要在中午玻璃很烫时清洗。",
+     "call_technician": false,
+     "confidence": "high",
+     "spoken_script": "先说好消息：这里没有看到任何损坏。不过您的光伏板相当脏，还有一部分在水箱的阴影里，所以您大概损失了百分之十五到三十的发电量。先从简单的清洗开始：清晨，用清水和软刷，不用肥皂。多尘的时候每两到三周清洗一次。阴影的问题比较大，请问问安装商能否移动水箱或重新接线。",
+     "looks_ok": [
+      "玻璃没有破裂",
+      "边框和支架看起来端正"
+     ],
+     "next_photo": "清洗后近距离拍摄光伏板，以便检查电池是否有损伤"
+    },
+    "id": {
+     "subject": "panels",
+     "summary": "Panel Anda kotor dan sebagian terkena bayangan, jadi dayanya turun cukup banyak.",
+     "overall_severity": "medium",
+     "issues": [
+      {
+       "title": "Debu tebal di panel bawah",
+       "detail": "Lapisan debu cokelat menutupi bagian bawah sebagian besar panel di sisi kiri.",
+       "severity": "medium",
+       "likely_cause": "Debu menumpuk berminggu-minggu tanpa dibersihkan, paling parah di tepi bawah tempat air hujan meninggalkannya.",
+       "box_2d": [
+        690,
+        82,
+        920,
+        520
+       ],
+       "where": "Separuh bawah panel di sisi kiri",
+       "confidence": "high"
+      },
+      {
+       "title": "Kotoran burung",
+       "detail": "Beberapa bercak putih di panel baris atas.",
+       "severity": "low",
+       "likely_cause": "Burung hinggap di bingkai. Setiap bercak menaungi beberapa sel.",
+       "box_2d": [
+        580,
+        290,
+        650,
+        350
+       ],
+       "where": "Baris atas, panel kedua dan keempat",
+       "confidence": "high"
+      },
+      {
+       "title": "Kotoran burung",
+       "detail": "Satu bercak lagi di baris bawah.",
+       "severity": "low",
+       "likely_cause": "Burung hinggap di bingkai.",
+       "box_2d": [
+        760,
+        400,
+        820,
+        450
+       ],
+       "where": "Baris bawah, panel tengah",
+       "confidence": "medium"
+      },
+      {
+       "title": "Bayangan tangki air",
+       "detail": "Bayangan tangki jatuh di sisi kanan rangkaian panel.",
+       "severity": "medium",
+       "likely_cause": "Tangki berada di barat daya panel, jadi menaunginya pada sore hari.",
+       "box_2d": [
+        580,
+        500,
+        920,
+        880
+       ],
+       "where": "Sisi kanan rangkaian panel",
+       "confidence": "high"
+      }
+     ],
+     "output_loss_low_pct": 15,
+     "output_loss_high_pct": 30,
+     "actions": [
+      {
+       "step": "Cuci panel dengan air biasa dan sikat lembut pagi-pagi, sebelum panas. Tanpa sabun atau deterjen.",
+       "who": "you"
+      },
+      {
+       "step": "Bersihkan setiap dua sampai tiga minggu saat musim berdebu.",
+       "who": "you"
+      },
+      {
+       "step": "Tanyakan ke pemasang apakah tangki bisa dipindah, atau panel yang terkena bayangan dirangkai ulang agar tidak menurunkan seluruh string.",
+       "who": "technician"
+      }
+     ],
+     "safety_warning": "Bersihkan hanya dari posisi yang aman. Jangan berjalan di atas panel, dan jangan membersihkannya siang hari saat kacanya sangat panas.",
+     "call_technician": false,
+     "confidence": "high",
+     "spoken_script": "Kabar baiknya dulu: tidak ada yang tampak rusak. Tapi panel Anda cukup kotor dan sebagian berada di bayangan tangki air, jadi Anda mungkin kehilangan lima belas sampai tiga puluh persen daya. Mulailah dengan mencuci: pagi-pagi, air biasa dan sikat lembut, tanpa sabun. Lakukan setiap dua sampai tiga minggu saat berdebu. Bayangan itu pekerjaan yang lebih besar, jadi tanyakan ke pemasang apakah tangki bisa dipindah atau panel dirangkai ulang.",
+     "looks_ok": [
+      "Kaca tidak retak",
+      "Bingkai dan dudukan terlihat lurus"
+     ],
+     "next_photo": "panel dari jarak dekat setelah dibersihkan, untuk memeriksa kerusakan sel"
+    },
+    "ar": {
+     "subject": "panels",
+     "summary": "ألواحك متسخة وجزء منها في الظل، لذلك تفقد قدرًا ملحوظًا من الطاقة.",
+     "overall_severity": "medium",
+     "issues": [
+      {
+       "title": "غبار كثيف على الألواح السفلية",
+       "detail": "طبقة بنية من الغبار تغطي الجزء السفلي من معظم الألواح في النصف الأيسر.",
+       "severity": "medium",
+       "likely_cause": "تراكم الغبار لأسابيع دون تنظيف، وأسوأه عند الحافة السفلية حيث يتركه ماء المطر.",
+       "box_2d": [
+        690,
+        82,
+        920,
+        520
+       ],
+       "where": "النصف السفلي من الألواح على الجانب الأيسر",
+       "confidence": "high"
+      },
+      {
+       "title": "فضلات الطيور",
+       "detail": "عدة بقع بيضاء على ألواح الصف العلوي.",
+       "severity": "low",
+       "likely_cause": "تقف الطيور على الإطار. كل بقعة تحجب الضوء عن بضع خلايا.",
+       "box_2d": [
+        580,
+        290,
+        650,
+        350
+       ],
+       "where": "الصف العلوي، اللوحان الثاني والرابع",
+       "confidence": "high"
+      },
+      {
+       "title": "فضلات الطيور",
+       "detail": "بقعة أخرى على الصف السفلي.",
+       "severity": "low",
+       "likely_cause": "تقف الطيور على الإطار.",
+       "box_2d": [
+        760,
+        400,
+        820,
+        450
+       ],
+       "where": "الصف السفلي، اللوح الأوسط",
+       "confidence": "medium"
+      },
+      {
+       "title": "ظل خزان الماء",
+       "detail": "يقع ظل الخزان على الجانب الأيمن من الألواح.",
+       "severity": "medium",
+       "likely_cause": "الخزان جنوب غرب الألواح، لذلك يظللها بعد الظهر.",
+       "box_2d": [
+        580,
+        500,
+        920,
+        880
+       ],
+       "where": "الجانب الأيمن من الألواح",
+       "confidence": "high"
+      }
+     ],
+     "output_loss_low_pct": 15,
+     "output_loss_high_pct": 30,
+     "actions": [
+      {
+       "step": "اغسل الألواح بماء عادي وفرشاة ناعمة في الصباح الباكر قبل أن تسخن. بدون صابون أو منظفات.",
+       "who": "you"
+      },
+      {
+       "step": "نظّفها كل أسبوعين إلى ثلاثة أسابيع في الأشهر المغبرة.",
+       "who": "you"
+      },
+      {
+       "step": "اسأل المُركِّب إن كان يمكن نقل الخزان، أو إعادة توصيل الألواح المظللة حتى لا يُضعف الظل السلسلة كلها.",
+       "who": "technician"
+      }
+     ],
+     "safety_warning": "نظّف فقط من مكان آمن. لا تمشِ على الألواح، ولا تنظفها وقت الظهيرة حين يكون الزجاج ساخنًا جدًا.",
+     "call_technician": false,
+     "confidence": "high",
+     "spoken_script": "الخبر الجيد أولًا: لا يبدو أن شيئًا مكسورًا. لكن ألواحك متسخة كثيرًا وجزء منها في ظل خزان الماء، لذلك تخسر غالبًا ما بين خمسة عشر وثلاثين بالمئة من طاقتك. ابدأ بغسل بسيط: في الصباح الباكر، بماء عادي وفرشاة ناعمة، بدون صابون. كرر ذلك كل أسبوعين إلى ثلاثة في موسم الغبار. أما الظل فعمل أكبر، فاسأل المُركِّب إن كان يمكن نقل الخزان أو إعادة توصيل الألواح.",
+     "looks_ok": [
+      "الزجاج غير مكسور",
+      "الإطارات والحوامل مستقيمة"
+     ],
+     "next_photo": "الألواح عن قرب بعد التنظيف، لأتحقق من سلامة الخلايا"
+    }
+   }
+  },
+  {
+   "id": "fault",
+   "title": "Inverter showing a fault",
+   "file": "inverter_fault.jpg",
+   "kind": "photo",
+   "result": {
+    "en": {
+     "subject": "inverter",
+     "summary": "Your inverter has stopped because the grid voltage is too high (fault F07), so the panels aren't producing anything right now.",
+     "overall_severity": "high",
+     "issues": [
+      {
+       "title": "Fault F07: grid over-voltage",
+       "detail": "The screen shows FAULT F07, Grid Over Voltage, with the grid at 271 V and both PV inputs at 0 V.",
+       "severity": "high",
+       "likely_cause": "The mains voltage in your area is above the inverter's safe limit, often around midday when many rooftop systems export power at once. The inverter disconnects to protect itself.",
+       "box_2d": [
+        243,
+        308,
+        520,
+        692
+       ],
+       "where": "Inverter screen",
+       "confidence": "high"
+      },
+      {
+       "title": "Fault light on",
+       "detail": "The red FAULT light is lit, so the inverter is not exporting or charging.",
+       "severity": "high",
+       "likely_cause": "Same grid over-voltage fault.",
+       "box_2d": [
+        555,
+        530,
+        615,
+        580
+       ],
+       "where": "Red light under the screen, far right",
+       "confidence": "high"
+      }
+     ],
+     "output_loss_low_pct": 30,
+     "output_loss_high_pct": 100,
+     "actions": [
+      {
+       "step": "Note the time and how often this happens. Take a photo of the screen each time.",
+       "who": "you"
+      },
+      {
+       "step": "Don't open the inverter or change its settings yourself.",
+       "who": "you"
+      },
+      {
+       "step": "Ask your installer to check the grid voltage settings allowed for your area and the cable size from the inverter to the meter.",
+       "who": "technician"
+      },
+      {
+       "step": "If it happens daily, report the high voltage to your electricity company with your photos.",
+       "who": "you"
+      }
+     ],
+     "safety_warning": "Don't open the inverter or touch the DC cables. They can carry dangerous voltage even when the screen shows 0 V.",
+     "call_technician": true,
+     "confidence": "high",
+     "spoken_script": "Your inverter has switched itself off with fault F07, which means the voltage coming from the grid is too high, two hundred and seventy one volts on your screen. It disconnects to protect itself, so right now your panels aren't making any electricity for you. This usually happens around midday in areas with lots of solar. Please don't open the inverter yourself. Note down when it happens, take photos, and ask your installer to check the voltage settings and the cable to your meter. If it keeps happening, report it to your electricity company.",
+     "looks_ok": [
+      "Inverter casing looks undamaged",
+      "No burn marks on the visible cables"
+     ],
+     "next_photo": "your electricity meter's voltage reading around midday"
+    },
+    "ur": {
+     "subject": "inverter",
+     "summary": "گرڈ کا وولٹیج زیادہ ہونے کی وجہ سے آپ کا انورٹر بند ہو گیا ہے (فالٹ F07)، اس لیے ابھی پینلز بالکل بجلی نہیں بنا رہے۔",
+     "overall_severity": "high",
+     "issues": [
+      {
+       "title": "فالٹ F07: گرڈ اوور وولٹیج",
+       "detail": "اسکرین پر FAULT F07 اور Grid Over Voltage لکھا ہے، گرڈ 271 وولٹ ہے اور دونوں PV ان پٹ صفر وولٹ پر ہیں۔",
+       "severity": "high",
+       "likely_cause": "آپ کے علاقے میں بجلی کا وولٹیج انورٹر کی محفوظ حد سے زیادہ ہے، اکثر دوپہر کو جب بہت سے سولر سسٹم ایک ساتھ بجلی واپس بھیجتے ہیں۔ انورٹر اپنی حفاظت کے لیے بند ہو جاتا ہے۔",
+       "box_2d": [
+        243,
+        308,
+        520,
+        692
+       ],
+       "where": "انورٹر کی اسکرین",
+       "confidence": "high"
+      },
+      {
+       "title": "فالٹ کی لائٹ جل رہی ہے",
+       "detail": "لال FAULT لائٹ جل رہی ہے، یعنی انورٹر بجلی نہیں بھیج رہا اور نہ چارج کر رہا ہے۔",
+       "severity": "high",
+       "likely_cause": "یہی گرڈ اوور وولٹیج فالٹ۔",
+       "box_2d": [
+        555,
+        530,
+        615,
+        580
+       ],
+       "where": "اسکرین کے نیچے سب سے دائیں سرخ لائٹ",
+       "confidence": "high"
+      }
+     ],
+     "output_loss_low_pct": 30,
+     "output_loss_high_pct": 100,
+     "actions": [
+      {
+       "step": "وقت نوٹ کریں اور دیکھیں یہ کتنی بار ہوتا ہے۔ ہر بار اسکرین کی تصویر لیں۔",
+       "who": "you"
+      },
+      {
+       "step": "انورٹر خود نہ کھولیں اور نہ اس کی سیٹنگ بدلیں۔",
+       "who": "you"
+      },
+      {
+       "step": "انسٹالر سے کہیں کہ آپ کے علاقے کے لیے وولٹیج کی سیٹنگ اور انورٹر سے میٹر تک کی تار چیک کرے۔",
+       "who": "technician"
+      },
+      {
+       "step": "اگر یہ روزانہ ہو تو تصویروں کے ساتھ بجلی کمپنی کو زیادہ وولٹیج کی شکایت کریں۔",
+       "who": "you"
+      }
+     ],
+     "safety_warning": "انورٹر نہ کھولیں اور DC تاروں کو ہاتھ نہ لگائیں۔ اسکرین پر صفر وولٹ ہونے کے باوجود ان میں خطرناک کرنٹ ہو سکتا ہے۔",
+     "call_technician": true,
+     "confidence": "high",
+     "spoken_script": "آپ کا انورٹر فالٹ F07 کی وجہ سے خود بند ہو گیا ہے، یعنی گرڈ سے آنے والا وولٹیج بہت زیادہ ہے، آپ کی اسکرین پر دو سو اکہتر وولٹ۔ انورٹر اپنی حفاظت کے لیے بند ہوتا ہے، اس لیے ابھی آپ کے پینلز کوئی بجلی نہیں بنا رہے۔ یہ اکثر دوپہر کے وقت ہوتا ہے جہاں بہت سے گھروں پر سولر لگا ہو۔ براہ کرم انورٹر خود نہ کھولیں۔ وقت نوٹ کریں، تصویریں لیں، اور انسٹالر سے وولٹیج کی سیٹنگ اور میٹر تک کی تار چیک کروائیں۔ اگر بار بار ہو تو بجلی کمپنی کو شکایت کریں۔",
+     "looks_ok": [
+      "انورٹر کی باڈی ٹھیک لگ رہی ہے",
+      "نظر آنے والی تاروں پر جلنے کے نشان نہیں"
+     ],
+     "next_photo": "دوپہر کے وقت بجلی کے میٹر پر وولٹیج کی ریڈنگ"
+    },
+    "hi": {
+     "subject": "inverter",
+     "summary": "ग्रिड वोल्टेज बहुत ज़्यादा होने (फ़ॉल्ट F07) की वजह से आपका इन्वर्टर बंद हो गया है, इसलिए अभी पैनल कुछ नहीं बना रहे।",
+     "overall_severity": "high",
+     "issues": [
+      {
+       "title": "फ़ॉल्ट F07: ग्रिड ओवर-वोल्टेज",
+       "detail": "स्क्रीन पर FAULT F07, Grid Over Voltage लिखा है, ग्रिड 271 V पर है और दोनों PV इनपुट 0 V पर हैं।",
+       "severity": "high",
+       "likely_cause": "आपके इलाके में बिजली का वोल्टेज इन्वर्टर की सुरक्षित सीमा से ऊपर है, अक्सर दोपहर में जब कई छतों के सिस्टम एक साथ बिजली भेजते हैं। इन्वर्टर खुद को बचाने के लिए कट जाता है।",
+       "box_2d": [
+        243,
+        308,
+        520,
+        692
+       ],
+       "where": "इन्वर्टर की स्क्रीन",
+       "confidence": "high"
+      },
+      {
+       "title": "फ़ॉल्ट लाइट जल रही है",
+       "detail": "लाल FAULT लाइट जल रही है, यानी इन्वर्टर न बिजली भेज रहा है न चार्ज कर रहा है।",
+       "severity": "high",
+       "likely_cause": "वही ग्रिड ओवर-वोल्टेज फ़ॉल्ट।",
+       "box_2d": [
+        555,
+        530,
+        615,
+        580
+       ],
+       "where": "स्क्रीन के नीचे, सबसे दाहिनी लाल लाइट",
+       "confidence": "high"
+      }
+     ],
+     "output_loss_low_pct": 30,
+     "output_loss_high_pct": 100,
+     "actions": [
+      {
+       "step": "समय और यह कितनी बार होता है, नोट करें। हर बार स्क्रीन की फ़ोटो लें।",
+       "who": "you"
+      },
+      {
+       "step": "इन्वर्टर खुद न खोलें और उसकी सेटिंग न बदलें।",
+       "who": "you"
+      },
+      {
+       "step": "अपने इंस्टॉलर से अपने इलाके के लिए अनुमत ग्रिड वोल्टेज सेटिंग और इन्वर्टर से मीटर तक की केबल का साइज़ जाँचने को कहें।",
+       "who": "technician"
+      },
+      {
+       "step": "अगर यह रोज़ होता है, तो फ़ोटो के साथ ज़्यादा वोल्टेज की शिकायत बिजली कंपनी से करें।",
+       "who": "you"
+      }
+     ],
+     "safety_warning": "इन्वर्टर न खोलें और DC केबल को न छुएँ। स्क्रीन पर 0 V दिखने पर भी उनमें खतरनाक वोल्टेज हो सकता है।",
+     "call_technician": true,
+     "confidence": "high",
+     "spoken_script": "आपका इन्वर्टर फ़ॉल्ट F07 के साथ खुद बंद हो गया है, यानी ग्रिड से आने वाला वोल्टेज बहुत ज़्यादा है, आपकी स्क्रीन पर दो सौ इकहत्तर वोल्ट। यह खुद को बचाने के लिए कट जाता है, इसलिए अभी आपके पैनल आपके लिए कोई बिजली नहीं बना रहे। ऐसा अक्सर उन इलाकों में दोपहर के आसपास होता है जहाँ बहुत सोलर लगे हैं। कृपया इन्वर्टर खुद न खोलें। यह कब होता है, नोट करें, फ़ोटो लें, और अपने इंस्टॉलर से वोल्टेज सेटिंग और मीटर तक की केबल जाँचने को कहें। अगर यह बार-बार हो, तो बिजली कंपनी से शिकायत करें।",
+     "looks_ok": [
+      "इन्वर्टर का ढाँचा ठीक दिखता है",
+      "दिख रही केबलों पर जलने के निशान नहीं हैं"
+     ],
+     "next_photo": "दोपहर के आसपास आपके बिजली मीटर की वोल्टेज रीडिंग"
+    },
+    "zh": {
+     "subject": "inverter",
+     "summary": "由于电网电压过高（故障 F07），您的逆变器已停机，光伏板目前没有发电。",
+     "overall_severity": "high",
+     "issues": [
+      {
+       "title": "故障 F07：电网过压",
+       "detail": "屏幕显示 FAULT F07、Grid Over Voltage，电网电压 271 V，两路 PV 输入均为 0 V。",
+       "severity": "high",
+       "likely_cause": "您所在地区的市电电压超过了逆变器的安全上限，常见于中午许多屋顶系统同时向电网送电时。逆变器为保护自身而断开。",
+       "box_2d": [
+        243,
+        308,
+        520,
+        692
+       ],
+       "where": "逆变器屏幕",
+       "confidence": "high"
+      },
+      {
+       "title": "故障灯亮起",
+       "detail": "红色 FAULT 灯亮着，说明逆变器既没有并网送电也没有充电。",
+       "severity": "high",
+       "likely_cause": "同一个电网过压故障。",
+       "box_2d": [
+        555,
+        530,
+        615,
+        580
+       ],
+       "where": "屏幕下方最右侧的红灯",
+       "confidence": "high"
+      }
+     ],
+     "output_loss_low_pct": 30,
+     "output_loss_high_pct": 100,
+     "actions": [
+      {
+       "step": "记下发生的时间和频率，每次都给屏幕拍照。",
+       "who": "you"
+      },
+      {
+       "step": "不要自己打开逆变器或修改设置。",
+       "who": "you"
+      },
+      {
+       "step": "请安装商检查您所在地区允许的电网电压设置，以及逆变器到电表的电缆规格。",
+       "who": "technician"
+      },
+      {
+       "step": "如果每天都发生，带上照片向供电公司反映电压过高。",
+       "who": "you"
+      }
+     ],
+     "safety_warning": "不要打开逆变器或触碰直流电缆。即使屏幕显示 0 V，它们也可能带有危险电压。",
+     "call_technician": true,
+     "confidence": "high",
+     "spoken_script": "您的逆变器因为故障 F07 自动停机了，意思是电网送来的电压太高，屏幕上显示是二百七十一伏。它断开是为了保护自己，所以现在您的光伏板没有为您发电。这种情况常在光伏很多的地区、中午前后出现。请不要自己打开逆变器。记下发生的时间，拍好照片，请安装商检查电压设置和到电表的电缆。如果经常发生，请向供电公司反映。",
+     "looks_ok": [
+      "逆变器外壳看起来完好",
+      "可见的电缆上没有烧痕"
+     ],
+     "next_photo": "中午前后您电表上的电压读数"
+    },
+    "id": {
+     "subject": "inverter",
+     "summary": "Inverter Anda berhenti karena tegangan jaringan terlalu tinggi (error F07), jadi panel tidak menghasilkan listrik saat ini.",
+     "overall_severity": "high",
+     "issues": [
+      {
+       "title": "Error F07: tegangan jaringan berlebih",
+       "detail": "Layar menunjukkan FAULT F07, Grid Over Voltage, dengan jaringan 271 V dan kedua input PV 0 V.",
+       "severity": "high",
+       "likely_cause": "Tegangan listrik jaringan di daerah Anda melebihi batas aman inverter, sering terjadi siang hari saat banyak sistem atap mengirim listrik bersamaan. Inverter memutus diri untuk melindungi diri.",
+       "box_2d": [
+        243,
+        308,
+        520,
+        692
+       ],
+       "where": "Layar inverter",
+       "confidence": "high"
+      },
+      {
+       "title": "Lampu fault menyala",
+       "detail": "Lampu merah FAULT menyala, jadi inverter tidak mengirim listrik maupun mengisi baterai.",
+       "severity": "high",
+       "likely_cause": "Error tegangan jaringan berlebih yang sama.",
+       "box_2d": [
+        555,
+        530,
+        615,
+        580
+       ],
+       "where": "Lampu merah paling kanan di bawah layar",
+       "confidence": "high"
+      }
+     ],
+     "output_loss_low_pct": 30,
+     "output_loss_high_pct": 100,
+     "actions": [
+      {
+       "step": "Catat waktu dan seberapa sering ini terjadi. Foto layarnya setiap kali.",
+       "who": "you"
+      },
+      {
+       "step": "Jangan membuka inverter atau mengubah pengaturannya sendiri.",
+       "who": "you"
+      },
+      {
+       "step": "Minta pemasang memeriksa pengaturan tegangan jaringan yang diizinkan di daerah Anda dan ukuran kabel dari inverter ke meteran.",
+       "who": "technician"
+      },
+      {
+       "step": "Jika terjadi setiap hari, laporkan tegangan tinggi ke perusahaan listrik dengan foto-foto Anda.",
+       "who": "you"
+      }
+     ],
+     "safety_warning": "Jangan membuka inverter atau menyentuh kabel DC. Kabel itu bisa bertegangan berbahaya meskipun layar menunjukkan 0 V.",
+     "call_technician": true,
+     "confidence": "high",
+     "spoken_script": "Inverter Anda mati sendiri dengan error F07, artinya tegangan dari jaringan terlalu tinggi, dua ratus tujuh puluh satu volt di layar Anda. Inverter memutus diri untuk melindungi diri, jadi saat ini panel Anda tidak menghasilkan listrik. Ini biasanya terjadi sekitar siang hari di daerah dengan banyak panel surya. Jangan membuka inverter sendiri. Catat kapan terjadi, ambil foto, dan minta pemasang memeriksa pengaturan tegangan dan kabel ke meteran. Jika terus terjadi, laporkan ke perusahaan listrik.",
+     "looks_ok": [
+      "Casing inverter tampak utuh",
+      "Tidak ada bekas terbakar pada kabel yang terlihat"
+     ],
+     "next_photo": "angka tegangan di meteran listrik Anda sekitar siang hari"
+    },
+    "ar": {
+     "subject": "inverter",
+     "summary": "توقف العاكس لأن جهد الشبكة مرتفع جدًا (عطل F07)، لذلك لا تنتج الألواح أي كهرباء الآن.",
+     "overall_severity": "high",
+     "issues": [
+      {
+       "title": "عطل F07: ارتفاع جهد الشبكة",
+       "detail": "تعرض الشاشة FAULT F07 وGrid Over Voltage، والشبكة عند 271 فولت ومدخلا الألواح عند 0 فولت.",
+       "severity": "high",
+       "likely_cause": "جهد الكهرباء في منطقتك أعلى من الحد الآمن للعاكس، وغالبًا يحدث ذلك ظهرًا عندما تصدّر أنظمة كثيرة على الأسطح الكهرباء في وقت واحد. يفصل العاكس نفسه ليحمي نفسه.",
+       "box_2d": [
+        243,
+        308,
+        520,
+        692
+       ],
+       "where": "شاشة العاكس",
+       "confidence": "high"
+      },
+      {
+       "title": "ضوء العطل مضاء",
+       "detail": "ضوء FAULT الأحمر مضاء، أي أن العاكس لا يصدّر الكهرباء ولا يشحن.",
+       "severity": "high",
+       "likely_cause": "نفس عطل ارتفاع جهد الشبكة.",
+       "box_2d": [
+        555,
+        530,
+        615,
+        580
+       ],
+       "where": "الضوء الأحمر أقصى اليمين تحت الشاشة",
+       "confidence": "high"
+      }
+     ],
+     "output_loss_low_pct": 30,
+     "output_loss_high_pct": 100,
+     "actions": [
+      {
+       "step": "سجّل وقت حدوث ذلك وعدد مراته، والتقط صورة للشاشة في كل مرة.",
+       "who": "you"
+      },
+      {
+       "step": "لا تفتح العاكس ولا تغيّر إعداداته بنفسك.",
+       "who": "you"
+      },
+      {
+       "step": "اطلب من المُركِّب فحص إعدادات جهد الشبكة المسموح بها في منطقتك ومقاس الكابل من العاكس إلى العداد.",
+       "who": "technician"
+      },
+      {
+       "step": "إذا تكرر يوميًا، أبلغ شركة الكهرباء عن الجهد المرتفع مع صورك.",
+       "who": "you"
+      }
+     ],
+     "safety_warning": "لا تفتح العاكس ولا تلمس كابلات التيار المستمر. قد تحمل جهدًا خطيرًا حتى لو أظهرت الشاشة 0 فولت.",
+     "call_technician": true,
+     "confidence": "high",
+     "spoken_script": "أطفأ العاكس نفسه بسبب العطل F07، أي أن الجهد القادم من الشبكة مرتفع جدًا، مئتان وواحد وسبعون فولتًا على شاشتك. يفصل نفسه ليحمي نفسه، لذلك لا تنتج ألواحك أي كهرباء لك الآن. يحدث هذا عادة قرب الظهر في المناطق التي فيها كثير من الطاقة الشمسية. من فضلك لا تفتح العاكس بنفسك. سجّل وقت حدوثه، والتقط صورًا، واطلب من المُركِّب فحص إعدادات الجهد والكابل إلى العداد. وإذا تكرر، أبلغ شركة الكهرباء.",
+     "looks_ok": [
+      "هيكل العاكس سليم",
+      "لا توجد آثار احتراق على الكابلات الظاهرة"
+     ],
+     "next_photo": "قراءة الجهد على عداد الكهرباء قرب الظهر"
+    }
+   }
+  },
+  {
+   "id": "cracked",
+   "title": "Cracked panel",
+   "file": "cracked_panel.jpg",
+   "kind": "photo",
+   "result": {
+    "en": {
+     "subject": "panels",
+     "summary": "This panel has cracked glass and a burn mark, so it needs to be checked and probably replaced.",
+     "overall_severity": "danger",
+     "issues": [
+      {
+       "title": "Cracked glass",
+       "detail": "Cracks spread out from one impact point across several cells.",
+       "severity": "high",
+       "likely_cause": "Something hit the panel (hail, a falling object, or someone stepping on it).",
+       "box_2d": [
+        220,
+        270,
+        800,
+        710
+       ],
+       "where": "Centre of the panel",
+       "confidence": "high"
+      },
+      {
+       "title": "Burn mark (hotspot)",
+       "detail": "A brown burnt patch next to the cracks.",
+       "severity": "danger",
+       "likely_cause": "Damaged cells overheat when current is forced through them. This can get worse and is a fire risk.",
+       "box_2d": [
+        420,
+        430,
+        590,
+        595
+       ],
+       "where": "Just right of the impact point, in the middle of the panel",
+       "confidence": "high"
+      }
+     ],
+     "output_loss_low_pct": 10,
+     "output_loss_high_pct": 25,
+     "actions": [
+      {
+       "step": "Don't touch, clean or step on this panel.",
+       "who": "you"
+      },
+      {
+       "step": "Call your installer soon to isolate the panel and test the string.",
+       "who": "technician"
+      },
+      {
+       "step": "Check if the panel is still under warranty and keep these photos as proof.",
+       "who": "you"
+      }
+     ],
+     "safety_warning": "A cracked panel can leak current and the burnt area can get hotter. Keep children away and don't spray water on it.",
+     "call_technician": true,
+     "confidence": "high",
+     "spoken_script": "This one needs attention soon. The glass on this panel is cracked, and next to the cracks there's a burn mark, which means damaged cells are overheating. Besides losing power, that can become a fire risk. Please don't touch it, clean it, or spray water on it. Call your installer to disconnect this panel and test the rest of the string, and check whether it's still under warranty. Keep these photos as proof.",
+     "looks_ok": [
+      "Panel frame is intact"
+     ],
+     "next_photo": "the back of the panel and its junction box, if you can see it safely from the ground"
+    },
+    "ur": {
+     "subject": "panels",
+     "summary": "اس پینل کا شیشہ ٹوٹا ہوا ہے اور جلنے کا نشان ہے، اسے چیک کروانا ہوگا اور شاید بدلنا پڑے گا۔",
+     "overall_severity": "danger",
+     "issues": [
+      {
+       "title": "ٹوٹا ہوا شیشہ",
+       "detail": "ایک جگہ سے دراڑیں نکل کر کئی سیلز تک پھیلی ہوئی ہیں۔",
+       "severity": "high",
+       "likely_cause": "پینل پر کوئی چیز لگی ہے (اولے، گرنے والی چیز، یا کسی کا پیر)۔",
+       "box_2d": [
+        220,
+        270,
+        800,
+        710
+       ],
+       "where": "پینل کا درمیانی حصہ",
+       "confidence": "high"
+      },
+      {
+       "title": "جلنے کا نشان (ہاٹ اسپاٹ)",
+       "detail": "دراڑوں کے ساتھ بھورا جلا ہوا حصہ ہے۔",
+       "severity": "danger",
+       "likely_cause": "خراب سیلز میں کرنٹ گزرنے سے وہ گرم ہو جاتے ہیں۔ یہ بڑھ سکتا ہے اور آگ کا خطرہ ہے۔",
+       "box_2d": [
+        420,
+        430,
+        590,
+        595
+       ],
+       "where": "ٹکر والی جگہ کے بالکل دائیں، پینل کے بیچ میں",
+       "confidence": "high"
+      }
+     ],
+     "output_loss_low_pct": 10,
+     "output_loss_high_pct": 25,
+     "actions": [
+      {
+       "step": "اس پینل کو ہاتھ نہ لگائیں، صاف نہ کریں اور اس پر پیر نہ رکھیں۔",
+       "who": "you"
+      },
+      {
+       "step": "جلد انسٹالر کو بلائیں تاکہ وہ یہ پینل الگ کرے اور باقی پینلز ٹیسٹ کرے۔",
+       "who": "technician"
+      },
+      {
+       "step": "دیکھیں کہ پینل ابھی وارنٹی میں ہے یا نہیں، اور یہ تصویریں ثبوت کے طور پر رکھیں۔",
+       "who": "you"
+      }
+     ],
+     "safety_warning": "ٹوٹے ہوئے پینل سے کرنٹ نکل سکتا ہے اور جلا ہوا حصہ مزید گرم ہو سکتا ہے۔ بچوں کو دور رکھیں اور اس پر پانی نہ ڈالیں۔",
+     "call_technician": true,
+     "confidence": "high",
+     "spoken_script": "اس پر جلد توجہ دینی ہوگی۔ اس پینل کا شیشہ ٹوٹا ہوا ہے، اور دراڑوں کے ساتھ جلنے کا نشان ہے، یعنی خراب سیلز گرم ہو رہے ہیں۔ بجلی کم بننے کے ساتھ ساتھ اس سے آگ کا خطرہ بھی ہو سکتا ہے۔ براہ کرم اسے ہاتھ نہ لگائیں، صاف نہ کریں اور اس پر پانی نہ ڈالیں۔ انسٹالر کو بلائیں تاکہ وہ یہ پینل الگ کرے اور باقی سسٹم ٹیسٹ کرے، اور دیکھیں کہ پینل وارنٹی میں ہے یا نہیں۔ یہ تصویریں ثبوت کے طور پر سنبھال کر رکھیں۔",
+     "looks_ok": [
+      "پینل کا فریم سلامت ہے"
+     ],
+     "next_photo": "پینل کی پچھلی طرف اور جنکشن باکس، اگر زمین سے محفوظ طریقے سے نظر آئے"
+    },
+    "hi": {
+     "subject": "panels",
+     "summary": "इस पैनल का शीशा टूटा है और जलने का निशान है, इसलिए इसकी जाँच ज़रूरी है और शायद इसे बदलना पड़ेगा।",
+     "overall_severity": "danger",
+     "issues": [
+      {
+       "title": "टूटा हुआ शीशा",
+       "detail": "एक चोट के बिंदु से दरारें कई सेल में फैली हैं।",
+       "severity": "high",
+       "likely_cause": "पैनल पर कुछ टकराया है (ओले, गिरी हुई चीज़, या किसी का पैर)।",
+       "box_2d": [
+        220,
+        270,
+        800,
+        710
+       ],
+       "where": "पैनल का बीच का हिस्सा",
+       "confidence": "high"
+      },
+      {
+       "title": "जलने का निशान (हॉटस्पॉट)",
+       "detail": "दरारों के पास एक भूरा जला हुआ धब्बा है।",
+       "severity": "danger",
+       "likely_cause": "खराब सेल में ज़बरदस्ती करंट जाने पर वे ज़्यादा गर्म हो जाते हैं। यह बढ़ सकता है और आग का खतरा है।",
+       "box_2d": [
+        420,
+        430,
+        590,
+        595
+       ],
+       "where": "चोट के बिंदु के ठीक दाहिने, पैनल के बीच में",
+       "confidence": "high"
+      }
+     ],
+     "output_loss_low_pct": 10,
+     "output_loss_high_pct": 25,
+     "actions": [
+      {
+       "step": "इस पैनल को न छुएँ, न साफ़ करें, न उस पर चढ़ें।",
+       "who": "you"
+      },
+      {
+       "step": "जल्द अपने इंस्टॉलर को बुलाएँ ताकि वह पैनल अलग करके स्ट्रिंग की जाँच करे।",
+       "who": "technician"
+      },
+      {
+       "step": "देखें कि पैनल अभी वारंटी में है या नहीं, और ये फ़ोटो सबूत के तौर पर रखें।",
+       "who": "you"
+      }
+     ],
+     "safety_warning": "टूटे पैनल से करंट लीक हो सकता है और जला हुआ हिस्सा और गर्म हो सकता है। बच्चों को दूर रखें और इस पर पानी न डालें।",
+     "call_technician": true,
+     "confidence": "high",
+     "spoken_script": "इस पर जल्द ध्यान देना होगा। इस पैनल का शीशा टूटा है, और दरारों के पास जलने का निशान है, यानी खराब सेल ज़्यादा गर्म हो रहे हैं। बिजली कम बनने के साथ-साथ इससे आग का खतरा भी हो सकता है। कृपया इसे न छुएँ, न साफ़ करें, और न ही इस पर पानी डालें। अपने इंस्टॉलर को बुलाकर यह पैनल अलग करवाएँ और बाकी स्ट्रिंग की जाँच करवाएँ, और देखें कि यह वारंटी में है या नहीं। ये फ़ोटो सबूत के तौर पर रखें।",
+     "looks_ok": [
+      "पैनल का फ़्रेम सही-सलामत है"
+     ],
+     "next_photo": "पैनल का पिछला हिस्सा और उसका जंक्शन बॉक्स, अगर ज़मीन से सुरक्षित रूप से दिखे"
+    },
+    "zh": {
+     "subject": "panels",
+     "summary": "这块光伏板玻璃破裂并有烧痕，需要检查，很可能要更换。",
+     "overall_severity": "danger",
+     "issues": [
+      {
+       "title": "玻璃破裂",
+       "detail": "裂纹从一个撞击点向多片电池蔓延。",
+       "severity": "high",
+       "likely_cause": "有东西撞击了光伏板（冰雹、坠落物或有人踩踏）。",
+       "box_2d": [
+        220,
+        270,
+        800,
+        710
+       ],
+       "where": "光伏板中央",
+       "confidence": "high"
+      },
+      {
+       "title": "烧痕（热斑）",
+       "detail": "裂纹旁边有一块褐色烧焦的斑。",
+       "severity": "danger",
+       "likely_cause": "受损的电池在电流被迫通过时会过热。情况可能加重，有火灾风险。",
+       "box_2d": [
+        420,
+        430,
+        590,
+        595
+       ],
+       "where": "撞击点右侧，光伏板中部",
+       "confidence": "high"
+      }
+     ],
+     "output_loss_low_pct": 10,
+     "output_loss_high_pct": 25,
+     "actions": [
+      {
+       "step": "不要触摸、清洗或踩踏这块板。",
+       "who": "you"
+      },
+      {
+       "step": "尽快请安装商隔离这块板并测试整串组件。",
+       "who": "technician"
+      },
+      {
+       "step": "查一下这块板是否还在保修期内，并保留这些照片作为证据。",
+       "who": "you"
+      }
+     ],
+     "safety_warning": "破裂的光伏板可能漏电，烧焦处可能越来越热。让孩子远离，不要往上面喷水。",
+     "call_technician": true,
+     "confidence": "high",
+     "spoken_script": "这块板需要尽快处理。它的玻璃破裂了，裂纹旁边还有烧痕，说明受损的电池正在过热。除了发电量下降，这还可能带来火灾风险。请不要触摸、清洗或往上面喷水。请安装商把这块板断开并测试其余组件，再查查是否还在保修期内。保留好这些照片作为证据。",
+     "looks_ok": [
+      "光伏板边框完好"
+     ],
+     "next_photo": "如果能在地面安全看到，请拍光伏板背面和接线盒"
+    },
+    "id": {
+     "subject": "panels",
+     "summary": "Kaca panel ini retak dan ada bekas terbakar, jadi perlu diperiksa dan kemungkinan diganti.",
+     "overall_severity": "danger",
+     "issues": [
+      {
+       "title": "Kaca retak",
+       "detail": "Retakan menyebar dari satu titik benturan ke beberapa sel.",
+       "severity": "high",
+       "likely_cause": "Ada sesuatu yang menghantam panel (hujan es, benda jatuh, atau terinjak).",
+       "box_2d": [
+        220,
+        270,
+        800,
+        710
+       ],
+       "where": "Bagian tengah panel",
+       "confidence": "high"
+      },
+      {
+       "title": "Bekas terbakar (hotspot)",
+       "detail": "Bercak cokelat terbakar di dekat retakan.",
+       "severity": "danger",
+       "likely_cause": "Sel yang rusak menjadi terlalu panas saat arus dipaksa melewatinya. Ini bisa memburuk dan berisiko kebakaran.",
+       "box_2d": [
+        420,
+        430,
+        590,
+        595
+       ],
+       "where": "Tepat di kanan titik benturan, di tengah panel",
+       "confidence": "high"
+      }
+     ],
+     "output_loss_low_pct": 10,
+     "output_loss_high_pct": 25,
+     "actions": [
+      {
+       "step": "Jangan menyentuh, membersihkan, atau menginjak panel ini.",
+       "who": "you"
+      },
+      {
+       "step": "Segera hubungi pemasang untuk mengisolasi panel dan menguji string-nya.",
+       "who": "technician"
+      },
+      {
+       "step": "Cek apakah panel masih bergaransi dan simpan foto ini sebagai bukti.",
+       "who": "you"
+      }
+     ],
+     "safety_warning": "Panel retak bisa membocorkan arus dan area terbakar bisa makin panas. Jauhkan anak-anak dan jangan menyemprotkan air ke panel.",
+     "call_technician": true,
+     "confidence": "high",
+     "spoken_script": "Panel ini perlu segera ditangani. Kacanya retak, dan di dekat retakan ada bekas terbakar, artinya sel yang rusak terlalu panas. Selain kehilangan daya, ini bisa menjadi risiko kebakaran. Jangan menyentuh, membersihkan, atau menyemprotkan air ke panel ini. Hubungi pemasang untuk memutus panel ini dan menguji panel lainnya, dan cek apakah masih bergaransi. Simpan foto ini sebagai bukti.",
+     "looks_ok": [
+      "Bingkai panel masih utuh"
+     ],
+     "next_photo": "bagian belakang panel dan kotak sambungannya, jika bisa dilihat dengan aman dari bawah"
+    },
+    "ar": {
+     "subject": "panels",
+     "summary": "زجاج هذا اللوح مكسور وعليه أثر احتراق، لذلك يجب فحصه وغالبًا استبداله.",
+     "overall_severity": "danger",
+     "issues": [
+      {
+       "title": "زجاج مكسور",
+       "detail": "تنتشر الشقوق من نقطة اصطدام واحدة عبر عدة خلايا.",
+       "severity": "high",
+       "likely_cause": "اصطدم شيء باللوح (برَد، أو جسم سقط، أو داس عليه أحد).",
+       "box_2d": [
+        220,
+        270,
+        800,
+        710
+       ],
+       "where": "وسط اللوح",
+       "confidence": "high"
+      },
+      {
+       "title": "أثر احتراق (نقطة ساخنة)",
+       "detail": "بقعة بنية محترقة بجانب الشقوق.",
+       "severity": "danger",
+       "likely_cause": "ترتفع حرارة الخلايا التالفة عندما يُجبر التيار على المرور فيها. قد يسوء ذلك وهو خطر حريق.",
+       "box_2d": [
+        420,
+        430,
+        590,
+        595
+       ],
+       "where": "يمين نقطة الاصطدام مباشرة، في منتصف اللوح",
+       "confidence": "high"
+      }
+     ],
+     "output_loss_low_pct": 10,
+     "output_loss_high_pct": 25,
+     "actions": [
+      {
+       "step": "لا تلمس هذا اللوح ولا تنظفه ولا تقف عليه.",
+       "who": "you"
+      },
+      {
+       "step": "اتصل بالمُركِّب قريبًا ليعزل اللوح ويفحص السلسلة.",
+       "who": "technician"
+      },
+      {
+       "step": "تحقق إن كان اللوح ما زال تحت الضمان واحتفظ بهذه الصور دليلًا.",
+       "who": "you"
+      }
+     ],
+     "safety_warning": "قد يسرّب اللوح المكسور تيارًا، وقد تزداد حرارة المنطقة المحترقة. أبعد الأطفال ولا ترشّ عليه الماء.",
+     "call_technician": true,
+     "confidence": "high",
+     "spoken_script": "هذا اللوح يحتاج إلى اهتمام قريب. زجاجه مكسور، وبجانب الشقوق أثر احتراق، أي أن خلايا تالفة ترتفع حرارتها. وإلى جانب فقدان الطاقة، قد يصبح ذلك خطر حريق. من فضلك لا تلمسه ولا تنظفه ولا ترش عليه الماء. اتصل بالمُركِّب ليفصل هذا اللوح ويفحص بقية الألواح، وتحقق إن كان تحت الضمان. واحتفظ بهذه الصور دليلًا.",
+     "looks_ok": [
+      "إطار اللوح سليم"
+     ],
+     "next_photo": "ظهر اللوح وصندوق التوصيل الخاص به، إن أمكن رؤيته بأمان من الأرض"
+    }
+   }
+  }
+ ],
+ "inverter_reading": {
+  "is_inverter_app": true,
+  "brand": null,
+  "capacity_kw": 10.0,
+  "today_kwh": 17.6,
+  "month_kwh": 287.4,
+  "days_into_month": 10,
+  "daily": [
+   {
+    "date": "2026-10-04",
+    "kwh": 29.8
+   },
+   {
+    "date": "2026-10-05",
+    "kwh": 28.4
+   },
+   {
+    "date": "2026-10-06",
+    "kwh": 27.9
+   },
+   {
+    "date": "2026-10-07",
+    "kwh": 29.1
+   },
+   {
+    "date": "2026-10-08",
+    "kwh": 27.2
+   },
+   {
+    "date": "2026-10-09",
+    "kwh": 28.6
+   },
+   {
+    "date": "2026-10-10",
+    "kwh": 27.5
+   }
+  ],
+  "current_power_kw": 2.14,
+  "fault_codes": [],
+  "notes": "Sample screenshot: 10 kWp rooftop system in Islamabad"
+ },
+ "perf_analysis": {
+  "en": {
+   "likely_causes": [
+    {
+     "cause": "Dust on the panels",
+     "evidence": "Output is about the same every day but steadily below what this sunshine should give, which is typical of a layer of dust.",
+     "check": "Wash the panels early in the morning, then compare tomorrow's kWh with today's."
+    },
+    {
+     "cause": "Partial shade at certain hours",
+     "evidence": "A steady daily gap can also come from a tank, wall or tree shading part of the array for an hour or two.",
+     "check": "Look at the panels at 10 am, 1 pm and 3 pm and note any shadow."
+    },
+    {
+     "cause": "High panel temperature",
+     "evidence": "October afternoons are still warm; hot panels lose a few percent.",
+     "check": "Check that air can flow under the panels; no action is needed if the gap is small."
+    }
+   ],
+   "actions": [
+    {
+     "step": "Wash the panels with plain water and a soft brush early in the morning",
+     "who": "you"
+    },
+    {
+     "step": "Check for shadows at different times of day",
+     "who": "you"
+    },
+    {
+     "step": "If the gap stays after cleaning, ask a technician to test each string's current",
+     "who": "technician"
+    }
+   ]
+  },
+  "ur": {
+   "likely_causes": [
+    {
+     "cause": "پینلز پر گرد",
+     "evidence": "پیداوار ہر روز تقریباً ایک جیسی ہے مگر اس دھوپ کے حساب سے مسلسل کم ہے، جو عموماً گرد کی تہہ کی علامت ہے۔",
+     "check": "صبح سویرے پینلز دھوئیں، پھر کل کے kWh آج سے موازنہ کریں۔"
+    },
+    {
+     "cause": "کچھ گھنٹوں کا سایہ",
+     "evidence": "روزانہ کا مستقل فرق ٹینکی، دیوار یا درخت کے ایک دو گھنٹے کے سائے سے بھی ہو سکتا ہے۔",
+     "check": "صبح 10، دوپہر 1 اور 3 بجے پینلز دیکھیں اور کوئی سایہ نوٹ کریں۔"
+    },
+    {
+     "cause": "پینلز کا زیادہ درجہ حرارت",
+     "evidence": "اکتوبر کی دوپہریں ابھی گرم ہیں؛ گرم پینل چند فیصد کم بجلی بناتے ہیں۔",
+     "check": "دیکھیں کہ پینلز کے نیچے ہوا گزر سکتی ہے؛ فرق کم ہو تو کچھ کرنے کی ضرورت نہیں۔"
+    }
+   ],
+   "actions": [
+    {
+     "step": "صبح سویرے سادے پانی اور نرم برش سے پینلز دھوئیں",
+     "who": "you"
+    },
+    {
+     "step": "دن کے مختلف اوقات میں سایہ چیک کریں",
+     "who": "you"
+    },
+    {
+     "step": "صفائی کے بعد بھی فرق رہے تو ٹیکنیشن سے ہر اسٹرنگ کا کرنٹ ٹیسٹ کروائیں",
+     "who": "technician"
+    }
+   ]
+  },
+  "hi": {
+   "likely_causes": [
+    {
+     "cause": "पैनलों पर धूल",
+     "evidence": "उत्पादन हर दिन लगभग एक जैसा है पर इस धूप के हिसाब से लगातार कम है, जो आमतौर पर धूल की परत का संकेत है।",
+     "check": "सुबह जल्दी पैनल धोएँ, फिर कल के kWh की आज से तुलना करें।"
+    },
+    {
+     "cause": "कुछ घंटों की छाया",
+     "evidence": "रोज़ का लगातार फ़र्क टंकी, दीवार या पेड़ की एक-दो घंटे की छाया से भी हो सकता है।",
+     "check": "सुबह 10, दोपहर 1 और 3 बजे पैनल देखें और कोई छाया नोट करें।"
+    },
+    {
+     "cause": "पैनलों का ज़्यादा तापमान",
+     "evidence": "अक्टूबर की दोपहरें अभी गर्म हैं; गर्म पैनल कुछ प्रतिशत कम बिजली बनाते हैं।",
+     "check": "देखें कि पैनलों के नीचे हवा जा सकती है; फ़र्क कम हो तो कुछ करने की ज़रूरत नहीं।"
+    }
+   ],
+   "actions": [
+    {
+     "step": "सुबह जल्दी सादे पानी और नरम ब्रश से पैनल धोएँ",
+     "who": "you"
+    },
+    {
+     "step": "दिन के अलग-अलग समय पर छाया जाँचें",
+     "who": "you"
+    },
+    {
+     "step": "सफ़ाई के बाद भी फ़र्क रहे तो तकनीशियन से हर स्ट्रिंग का करंट टेस्ट करवाएँ",
+     "who": "technician"
+    }
+   ]
+  },
+  "zh": {
+   "likely_causes": [
+    {
+     "cause": "光伏板积灰",
+     "evidence": "每天发电量基本一致，但持续低于当前日照应有的水平，这通常是积灰造成的。",
+     "check": "清晨清洗光伏板，然后比较明天和今天的发电量。"
+    },
+    {
+     "cause": "某些时段的局部遮挡",
+     "evidence": "每天稳定的差距也可能来自水箱、墙或树在一两个小时内遮挡部分组件。",
+     "check": "在上午 10 点、下午 1 点和 3 点查看光伏板，记下是否有阴影。"
+    },
+    {
+     "cause": "组件温度偏高",
+     "evidence": "十月的下午仍然较热，组件过热会损失几个百分点。",
+     "check": "确认光伏板下方通风良好；差距不大时无需处理。"
+    }
+   ],
+   "actions": [
+    {
+     "step": "清晨用清水和软刷清洗光伏板",
+     "who": "you"
+    },
+    {
+     "step": "在一天中不同时间检查是否有阴影",
+     "who": "you"
+    },
+    {
+     "step": "清洗后差距仍在，请技术人员测试每一路组串的电流",
+     "who": "technician"
+    }
+   ]
+  },
+  "id": {
+   "likely_causes": [
+    {
+     "cause": "Debu di panel",
+     "evidence": "Produksi hampir sama setiap hari tetapi selalu di bawah yang seharusnya untuk sinar matahari ini, ciri khas lapisan debu.",
+     "check": "Cuci panel pagi-pagi, lalu bandingkan kWh besok dengan hari ini."
+    },
+    {
+     "cause": "Bayangan pada jam tertentu",
+     "evidence": "Selisih harian yang tetap juga bisa berasal dari tangki, dinding, atau pohon yang menaungi sebagian panel satu-dua jam.",
+     "check": "Lihat panel pada pukul 10, 13, dan 15, lalu catat jika ada bayangan."
+    },
+    {
+     "cause": "Suhu panel tinggi",
+     "evidence": "Siang hari di bulan Oktober masih panas; panel yang panas kehilangan beberapa persen.",
+     "check": "Pastikan udara bisa mengalir di bawah panel; jika selisihnya kecil tidak perlu tindakan."
+    }
+   ],
+   "actions": [
+    {
+     "step": "Cuci panel dengan air biasa dan sikat lembut pagi-pagi",
+     "who": "you"
+    },
+    {
+     "step": "Periksa bayangan pada jam yang berbeda",
+     "who": "you"
+    },
+    {
+     "step": "Jika selisih tetap setelah dibersihkan, minta teknisi menguji arus tiap string",
+     "who": "technician"
+    }
+   ]
+  },
+  "ar": {
+   "likely_causes": [
+    {
+     "cause": "غبار على الألواح",
+     "evidence": "الإنتاج متقارب كل يوم لكنه أقل باستمرار مما يجب لهذه الشمس، وهذا نمط معتاد لطبقة غبار.",
+     "check": "اغسل الألواح في الصباح الباكر ثم قارن إنتاج الغد باليوم."
+    },
+    {
+     "cause": "ظل جزئي في ساعات معينة",
+     "evidence": "الفرق اليومي الثابت قد يأتي أيضًا من خزان أو جدار أو شجرة تظلل جزءًا من الألواح لساعة أو ساعتين.",
+     "check": "انظر إلى الألواح في العاشرة صباحًا والواحدة والثالثة ظهرًا وسجّل أي ظل."
+    },
+    {
+     "cause": "ارتفاع حرارة الألواح",
+     "evidence": "ما زالت ظهيرة أكتوبر دافئة؛ والألواح الساخنة تفقد بضعة بالمئة.",
+     "check": "تأكد من مرور الهواء تحت الألواح؛ لا حاجة لأي إجراء إذا كان الفرق صغيرًا."
+    }
+   ],
+   "actions": [
+    {
+     "step": "اغسل الألواح بماء عادي وفرشاة ناعمة في الصباح الباكر",
+     "who": "you"
+    },
+    {
+     "step": "تحقق من الظلال في أوقات مختلفة من اليوم",
+     "who": "you"
+    },
+    {
+     "step": "إذا بقي الفرق بعد التنظيف، اطلب من فني اختبار تيار كل سلسلة",
+     "who": "technician"
+    }
+   ]
+  }
+ }
+}
