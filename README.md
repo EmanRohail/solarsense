@@ -17,7 +17,7 @@ shows a fault, most owners can't tell what's wrong, what it's costing them, or w
    on the photo, with where it is, the evidence, the likely cause, the risk if ignored and how sure it is.
 3. **Explains it out loud** when you tap play, with captions and a written card for each issue. Safe steps are split from jobs
    that need a technician; anything electrical on a damaged system always goes to a technician.
-4. **Answers follow-up questions** typed or spoken in any language, looking at your photos again.
+4. **Answers your questions** typed or spoken in any language, looking at your photos again.
 5. **Makes a PDF report for the technician** (findings, evidence, what to do, photos) to download or share on WhatsApp.
 6. **Checks performance** from inverter app screenshots (or numbers typed in) against real local sunshine, and shows the
    **money lost per month in your currency**, with the likely causes and how to check each one.
@@ -28,15 +28,15 @@ The three sample photos and the sample inverter screenshot work instantly, so ev
 
 | Service | Role |
 |---|---|
-| **Gemini 2.5 Flash** | Photo diagnosis with boxes (structured JSON), inverter screenshot reading, voice question understanding, performance analysis |
-| **Firebase AI Logic** | Calls Gemini securely from the app (Gemini Developer API) with no keys in code; switches to back-up models if one is busy |
-| **Cloud Firestore** | Saves inspection reports, follow-up Q&A and performance checks, protected by security rules (photos are never stored) |
+| **Gemini 2.5 Flash** | Photo diagnosis with boxes (structured JSON), inverter screenshot reading, understanding spoken questions, performance analysis |
+| **Firebase AI Logic** | Calls Gemini securely from the app (Gemini Developer API) with no keys in code; switches to backup models if one is busy |
+| **Cloud Firestore** | Saves inspection reports, chat answers and performance checks, protected by security rules (photos are never stored) |
 | **Firebase Hosting** | Serves the mobile web app |
 
 Also used: [Open-Meteo](https://open-meteo.com) for daily sunshine and city search, OpenStreetMap for smaller places (both free,
 no key). Voice uses the device's own speech, with a web voice for languages the device doesn't have.
 
-**One AI request per check**, however many photos. The samples, the money maths and typed-in numbers need no AI at all.
+**One AI request per check**, however many photos. The samples, the money maths and numbers typed in by hand need no AI at all.
 
 ## Layout
 
