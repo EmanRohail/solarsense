@@ -58,6 +58,11 @@
           <small data-t="upload_hint">A photo, or a screenshot of an error</small>
         </label>
       </div>
+      <div class="cam-help" id="cam-help" role="alert" hidden>
+        <p data-t="cam_blocked">The in-app camera is blocked, so SolarSense will use your phone's own camera instead.</p>
+        <button type="button" class="btn" id="cam-fallback" data-t="cam_open_phone">Open camera</button>
+        <small data-t="cam_allow_hint">To use the in-app camera again, allow Camera for this site in your browser settings (the lock icon next to the address).</small>
+      </div>
       <div class="tray" id="tray" hidden>
         <div class="tray-row" id="tray-row"></div>
         <p class="fine" data-t="max_photos">You can add up to 4 photos of the same system, for example the panels, the inverter screen and the wiring.</p>
@@ -187,7 +192,7 @@
   </main>
 
   <footer class="foot" data-t="footer">Built on Google Cloud: Gemini sees, reads and listens through Firebase AI Logic; Firestore keeps the reports; Firebase Hosting serves the app. Photos and videos are not stored.</footer>
-  <p class="ver">v13</p>
+  <p class="ver">v14</p>
 </div>
 
 <!-- In-app camera -->

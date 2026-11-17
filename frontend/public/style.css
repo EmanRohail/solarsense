@@ -296,3 +296,7 @@ main { max-width: 1060px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px) 56px
 .manual { margin: 4px 0 6px; padding: 10px 14px; background: var(--white); border: 1.5px dashed #b9a6f0; border-radius: 14px; }
 .manual summary { cursor: pointer; font-weight: 700; color: var(--violet); }
 .manual[open] summary { margin-bottom: 6px; }
+/* ---------- v14: camera fallback when the in-app camera is blocked ---------- */
+.cam-help { margin: 14px 0 0; padding: 14px 16px; border-radius: 12px; background: #fff6e8; border: 1px solid #f1d29b; color: #6b4708; display: grid; gap: 10px; justify-items: start; }
+.cam-help p { margin: 0; }
+.cam-help small { color: #8a6a2e; }

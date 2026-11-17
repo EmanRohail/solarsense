@@ -41,7 +41,9 @@ const DYN = {
   pdf_making: "Making the PDF…", pdf_share: "Tap again to share the PDF", recording: "Recording… {s}s",
   manual_h: "No screenshot? Type your numbers",
   max_photos: "You can add up to 4 photos of the same system, for example the panels, the inverter screen and the wiring.",
-  cam_denied: "The camera is blocked or not available. Use Upload from gallery instead.", photo_n: "Photo {n}", risk_label: "If ignored:",
+  cam_denied: "The camera is blocked or not available. Use Upload from gallery instead.",
+  cam_blocked: "The in-app camera is blocked, so SolarSense will use your phone's own camera instead.", cam_open_phone: "Open camera",
+  cam_allow_hint: "To use the in-app camera again, allow Camera for this site in your browser settings (the lock icon next to the address).", photo_n: "Photo {n}", risk_label: "If ignored:",
   err_busy: "SolarSense has used up its free AI allowance for now. The samples still work. Try your own photo again in a few minutes.",
   err_slow: "The AI took too long to answer. Please try again.", err_setup: "The AI isn't switched on for this app yet.",
   err_ai: "The AI couldn't do that just now. Please try again.", err_photo: "The AI couldn't read that photo. Try a clearer, closer one.",
@@ -119,6 +121,7 @@ async function api(path, opts = {}) {
   if (!r.ok) throw new Error(d.detail || t("err_net"));
   return d;
 }
+function withTimeoutApp(p, ms) { return Promise.race([p, new Promise((_, rej) => setTimeout(() => rej(Object.assign(new Error("timeout"), { name: "TimeoutError" })), ms))]); }
 const reduced = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 const scrollTo = (el) => el.scrollIntoView({ behavior: reduced() ? "auto" : "smooth", block: "start" });
 
@@ -316,7 +319,7 @@ $("#tray-row").addEventListener("click", (e) => {
   const b = e.target.closest("[data-rm]"); if (!b) return;
   e.preventDefault(); photos.splice(+b.dataset.rm, 1); renderTray();
 });
-$("#tray-row").addEventListener("change", (e) => { addPhotos([...e.target.files]); });
+$("#tray-row").addEventListener("change", (e) => { const f = [...e.target.files]; e.target.value = ""; addPhotos(f); });
 $("#tray-clear").addEventListener("click", () => { photos = []; renderTray(); });
 ["#cam", "#upload"].forEach((id) => $(id).addEventListener("change", (e) => { const f = [...e.target.files]; e.target.value = ""; addPhotos(f); }));
 $("#tray-go").addEventListener("click", () => {
@@ -328,24 +331,61 @@ $("#tray-go").addEventListener("click", () => {
 });
 
 // In-app camera: opens the phone's or laptop's camera directly; several shots can be taken in a row.
-let camStream = null, camFacing = "environment";
-async function startCamera() {
-  camStream?.getTracks().forEach((t) => t.stop());
-  camStream = await navigator.mediaDevices.getUserMedia({ audio: false, video: { facingMode: { ideal: camFacing }, width: { ideal: 1920 }, height: { ideal: 1080 } } });
-  $("#cam-video").srcObject = camStream;
+// If the browser blocks it (permission denied, in-app browsers like WhatsApp/Instagram, camera busy, or it never answers),
+// SolarSense falls back to the phone's own camera app, which needs no browser permission.
+let camStream = null, camFacing = "environment", camBlocked = false, camTry = 0;
+const CAM_WAIT = 8000;
+navigator.permissions?.query?.({ name: "camera" }).then((st) => {
+  const upd = () => { camBlocked = st.state === "denied"; if (st.state === "granted") $("#cam-help").hidden = true; };
+  upd(); st.onchange = upd;
+}).catch(() => {});
+function stopStream() { camStream?.getTracks().forEach((t) => t.stop()); camStream = null; const v = $("#cam-video"); if (v) v.srcObject = null; }
+async function openStream(facing) {
+  const want = [{ audio: false, video: { facingMode: { ideal: facing }, width: { ideal: 1920 }, height: { ideal: 1080 } } },
+    { audio: false, video: { facingMode: facing } }, { audio: false, video: true }];
+  let last;
+  for (const c of want) {
+    let late = false;
+    const g = navigator.mediaDevices.getUserMedia(c);
+    g.then((st) => { if (late) st.getTracks().forEach((t) => t.stop()); }, () => {}); // answered after we gave up: switch it off
+    try { return await withTimeoutApp(g, CAM_WAIT); }
+    catch (e) {
+      last = e; if (e?.name === "TimeoutError") { late = true; break; }
+      if (!["OverconstrainedError", "ConstraintNotSatisfiedError", "NotReadableError", "AbortError"].includes(e?.name)) break;
+    }
+  }
+  throw last;
+}
+async function startCamera(facing = camFacing) {
+  const my = ++camTry;
+  const s = await openStream(facing);
+  if (my !== camTry || $("#cam-modal").hidden) { s.getTracks().forEach((t) => t.stop()); return; } // closed while waiting
+  stopStream(); camStream = s; camFacing = facing;
+  const v = $("#cam-video"); v.srcObject = s;
+  await v.play().catch(() => {});
 }
 function camCount() { $("#cam-count").textContent = photos.length ? `${photos.length} / ${MAX_PHOTOS}` : ""; }
-function closeCamera() { camStream?.getTracks().forEach((t) => t.stop()); camStream = null; $("#cam-modal").hidden = true; document.body.style.overflow = ""; }
+function closeCamera() { camTry++; stopStream(); $("#cam-modal").hidden = true; document.body.style.overflow = ""; }
+function cameraFailed() {
+  closeCamera(); camBlocked = true;
+  $("#cam-help").hidden = false;
+  $("#cam-help").scrollIntoView({ behavior: reduced() ? "auto" : "smooth", block: "center" });
+}
 $("#shoot").addEventListener("click", async (e) => {
-  if (!navigator.mediaDevices?.getUserMedia || !window.isSecureContext) return; // fall back to the phone's own camera picker
+  // No in-app camera possible: let the label open the phone's own camera app (input capture="environment").
+  if (camBlocked || !navigator.mediaDevices?.getUserMedia || !window.isSecureContext) return;
   e.preventDefault();
-  try {
-    $("#cam-modal").hidden = false; document.body.style.overflow = "hidden"; camCount();
-    await startCamera();
-  } catch { closeCamera(); showError(t("cam_denied")); }
+  showError(""); $("#cam-help").hidden = true;
+  $("#cam-modal").hidden = false; document.body.style.overflow = "hidden"; camCount();
+  try { await startCamera(); } catch (err) { console.warn("camera", err?.name, err?.message); if (!$("#cam-modal").hidden) cameraFailed(); }
 });
+$("#cam-fallback").addEventListener("click", () => { $("#cam-help").hidden = true; $("#cam").click(); });
 $("#cam-close").addEventListener("click", closeCamera);
-$("#cam-flip").addEventListener("click", async () => { camFacing = camFacing === "environment" ? "user" : "environment"; try { await startCamera(); } catch {} });
+$("#cam-flip").addEventListener("click", async () => {
+  const before = camFacing;
+  try { await startCamera(before === "environment" ? "user" : "environment"); }
+  catch { try { await startCamera(before); } catch { cameraFailed(); } } // the other camera failed: go back to the one that worked
+});
 $("#cam-shoot").addEventListener("click", () => {
   const v = $("#cam-video"); if (!v.videoWidth) return;
   const c = document.createElement("canvas"); c.width = v.videoWidth; c.height = v.videoHeight;
@@ -357,6 +397,9 @@ $("#cam-shoot").addEventListener("click", () => {
     if (photos.length >= MAX_PHOTOS) closeCamera();
   }, "image/jpeg", 0.9);
 });
+// Release the camera when the app goes to the background, so it isn't "in use" next time.
+document.addEventListener("visibilitychange", () => { if (document.hidden && !$("#cam-modal").hidden) closeCamera(); });
+window.addEventListener("pagehide", () => stopStream());
 document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !$("#cam-modal").hidden) closeCamera(); });
 
 async function runInspection(call, media) {
@@ -655,7 +698,6 @@ async function nameAndCurrency(url) {
   const name = [r.city || r.locality || r.principalSubdivision, r.countryName].filter(Boolean).join(", ");
   return { name, cc: r.countryCode, lat: r.latitude, lon: r.longitude };
 }
-const withTimeoutApp = (p, ms) => Promise.race([p, new Promise((_, rej) => setTimeout(() => rej(new Error("timeout")), ms))]);
 $("#geo").addEventListener("click", async () => {
   const btn = $("#geo"); btn.disabled = true; $("#err-place").hidden = true;
   const done = (pl) => {
