@@ -14,8 +14,12 @@ window.FIREBASE_CONFIG = {
   appId: "1:27982825642:web:e1faa17f5a82aad95b28d3",
 };
 
+// App Check (optional): paste the reCAPTCHA Enterprise site key from Firebase console > App Check > Apps.
+// Leave empty while App Check is NOT enforced for Firebase AI Logic. If you enforce it, this key must be set.
+window.SS_APPCHECK_KEY = "";
+
 // Optional overrides if Google renames a model:
-// window.SS_MODEL = "gemini-2.5-flash";
+// window.SS_MODEL = "gemini-3-flash-preview";
 // window.SS_TTS_MODEL = "gemini-2.5-flash-preview-tts";
 
 // Cloud Run mode only: leave empty to use the Firebase Hosting rewrite, or put the Cloud Run URL here.

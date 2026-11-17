@@ -54,7 +54,7 @@ Press F12 and open the Console tab to see errors.
 
 ## Optional: block other sites from using your Gemini quota
 
-**Security > App Check > Register** the web app with reCAPTCHA Enterprise (free tier), then **AI Logic > Enforce**.
+**Security > App Check > Register** the web app with reCAPTCHA Enterprise (free tier), paste the site key into `window.SS_APPCHECK_KEY` in `frontend/public/config.js`, deploy, and only then **AI Logic > Enforce**. Gemini's own voice (TTS) models only work when App Check is enforced; without it the app uses the device voice.
 Do this only after everything works. If done wrong, the app stops calling Gemini.
 
 ## Cloud Run version

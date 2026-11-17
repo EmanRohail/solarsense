@@ -28,7 +28,7 @@ The three sample photos and the sample inverter screenshot work instantly, so ev
 
 | Service | Role |
 |---|---|
-| **Gemini 2.5 Flash** | Photo diagnosis with boxes (structured JSON), inverter screenshot reading, understanding spoken questions, performance analysis |
+| **Gemini 3 Flash / 3.1 Flash-Lite** | Photo diagnosis with boxes (structured JSON), inverter screenshot reading, understanding spoken questions, performance analysis |
 | **Firebase AI Logic** | Calls Gemini securely from the app (Gemini Developer API) with no keys in code; switches to backup models if one is busy |
 | **Cloud Firestore** | Saves inspection reports, chat answers and performance checks, protected by security rules (photos are never stored) |
 | **Firebase Hosting** | Serves the mobile web app |

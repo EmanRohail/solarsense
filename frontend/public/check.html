@@ -56,13 +56,11 @@ document.getElementById("run").onclick = async () => {
   out.innerHTML = "";
   try { await load(); } catch { return; }
   for (const [n, model, cfg] of [
-    ["2. Gemini 2.5 Flash", "gemini-2.5-flash", {}],
-    ["3. Gemini 2.5 Flash, fast mode", "gemini-2.5-flash", { thinkingConfig: { thinkingBudget: 0 } }],
-    ["4. Gemini Flash (latest)", "gemini-flash-latest", {}],
-    ["5. Gemini 2.5 Flash-Lite", "gemini-2.5-flash-lite", {}],
-    ["5b. Gemini Flash-Lite (latest)", "gemini-flash-lite-latest", {}],
-    ["5c. Gemini 3 Flash preview", "gemini-3-flash-preview", {}],
-    ["5d. Gemini 2.0 Flash", "gemini-2.0-flash", {}],
+    ["2. Gemini 3 Flash preview", "gemini-3-flash-preview", {}],
+    ["3. Gemini 3 Flash, fast mode", "gemini-3-flash-preview", { thinkingConfig: { thinkingLevel: "low" } }],
+    ["4. Gemini 3.1 Flash-Lite preview", "gemini-3.1-flash-lite-preview", {}],
+    ["5. Gemini Flash-Lite (latest)", "gemini-flash-lite-latest", {}],
+    ["5b. Gemini Flash (latest)", "gemini-flash-latest", {}],
   ]) {
     const done = row(n);
     try { const r = await ask(model, "Reply with just the word OK.", cfg); done(true, `${r.ms} ms · "${r.text.trim().slice(0, 40)}"`); }
@@ -71,8 +69,8 @@ document.getElementById("run").onclick = async () => {
   const done6 = row("6. Gemini structured answer (JSON)");
   try {
     const S = fb.ai.Schema;
-    const r = await ask("gemini-2.5-flash-lite", "Answer in Urdu: is it safe to wash solar panels at noon?",
-      { responseMimeType: "application/json", responseSchema: S.object({ properties: { answer: S.string() } }), thinkingConfig: { thinkingBudget: 0 } });
+    const r = await ask("gemini-3.1-flash-lite-preview", "Answer in Urdu: is it safe to wash solar panels at noon?",
+      { responseMimeType: "application/json", responseSchema: S.object({ properties: { answer: S.string() } }) });
     done6(true, `${r.ms} ms · ${r.text.slice(0, 120)}`);
   } catch (e) { done6(false, String(e?.message || e)); }
   const done7 = row("7. Firestore");
@@ -115,8 +113,8 @@ document.getElementById("mic").onclick = async () => {
   try {
     await load();
     const data = await new Promise((res) => { const fr = new FileReader(); fr.onload = () => res(String(fr.result).split(",")[1]); fr.readAsDataURL(wav); });
-    const r = await ask("gemini-2.5-flash-lite", ["Write down exactly what is said in this audio. If nothing is said, reply: (silence)", { inlineData: { data, mimeType: "audio/wav" } }],
-      { thinkingConfig: { thinkingBudget: 0 } });
+    const r = await ask("gemini-3.1-flash-lite-preview", ["Write down exactly what is said in this audio. If nothing is said, reply: (silence)", { inlineData: { data, mimeType: "audio/wav" } }],
+      {});
     done3(true, `${r.ms} ms · "${r.text.trim().slice(0, 160)}"`);
   } catch (e) { done3(false, String(e?.message || e)); }
 };

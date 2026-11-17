@@ -5,9 +5,10 @@
 
 const SDK = "https://www.gstatic.com/firebasejs/12.19.0";
 // Each model has its own small free daily allowance, so SolarSense rotates through several.
-// Order = speed with quality: 2.5 Flash without "thinking" is fast and strong; the Lite models are the quick back-ups.
-const MODELS = [window.SS_MODEL, "gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-flash-lite-latest", "gemini-flash-latest",
-  "gemini-3-flash-preview", "gemini-2.0-flash"].filter(Boolean);
+// Order = speed with quality: 3 Flash (low thinking) is fast and strong; the Lite models are the quick back-ups.
+// Gemini 2.0/2.5 Flash were retired for new users (404), so they are no longer listed.
+const MODELS = [window.SS_MODEL, "gemini-3-flash-preview", "gemini-3.1-flash-lite-preview", "gemini-flash-lite-latest",
+  "gemini-flash-latest"].filter(Boolean);
 const TTS_MODELS = [window.SS_TTS_MODEL, "gemini-3.1-flash-tts-preview", "gemini-2.5-flash-preview-tts"].filter(Boolean);
 const INLINE_LIMIT = 14 * 1024 * 1024; // Firebase AI Logic request limit is about 20 MB after base64
 
@@ -33,6 +34,12 @@ async function loadFirebase() {
   const [{ initializeApp }, aiMod, fs] = await Promise.all([
     import(`${SDK}/firebase-app.js`), import(`${SDK}/firebase-ai.js`), import(`${SDK}/firebase-firestore.js`)]);
   const app = initializeApp(window.FIREBASE_CONFIG);
+  // App Check: only when a reCAPTCHA Enterprise site key is set in config.js. If App Check is
+  // enforced for Firebase AI Logic in the console, this key is required or every AI call gets a 401.
+  if (window.SS_APPCHECK_KEY) try {
+    const ac = await import(`${SDK}/firebase-app-check.js`);
+    ac.initializeAppCheck(app, { provider: new ac.ReCaptchaEnterpriseProvider(window.SS_APPCHECK_KEY), isTokenAutoRefreshEnabled: true });
+  } catch (e) { console.warn("App Check unavailable", e); }
   const ai = aiMod.getAI(app, { backend: new aiMod.GoogleAIBackend() });
   let db = null;
   try { db = fs.getFirestore(app); } catch (e) { console.warn("Firestore unavailable", e); }
@@ -593,7 +600,7 @@ concrete check (owner-safe where possible, otherwise what a technician should te
 Be concise: at most 3 causes and 3 actions, one short sentence per field.`];
     const imgs = await Promise.all(files.map(async (f) => fileToPart(await shrink(f, files.length > 1 ? 960 : 1152))));
     parts.push(...imgs);
-    try { reading = await gemini(parts, SCHEMA?.reading, 0, true, 0, 12000, true, 24000, ["gemini-2.5-flash-lite", "gemini-2.5-flash"]); }
+    try { reading = await gemini(parts, SCHEMA?.reading, 0, true, 0, 12000, true, 24000, ["gemini-3.1-flash-lite-preview", "gemini-3-flash-preview"]); }
     catch (e) {
       if (manual) reading = manual;
       else { const err = friendly(e, "The AI couldn't read that screenshot. Try a clearer one.", "shot"); err.offerManual = true; throw err; }
