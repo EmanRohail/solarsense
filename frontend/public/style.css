@@ -300,3 +300,5 @@ main { max-width: 1060px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px) 56px
 .cam-help { margin: 14px 0 0; padding: 14px 16px; border-radius: 12px; background: #fff6e8; border: 1px solid #f1d29b; color: #6b4708; display: grid; gap: 10px; justify-items: start; }
 .cam-help p { margin: 0; }
 .cam-help small { color: #8a6a2e; }
+.cam-help-btns { display: flex; flex-wrap: wrap; gap: 8px; }
+.cam-help [hidden] { display: none !important; }

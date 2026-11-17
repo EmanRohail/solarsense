@@ -43,7 +43,10 @@ const DYN = {
   max_photos: "You can add up to 4 photos of the same system, for example the panels, the inverter screen and the wiring.",
   cam_denied: "The camera is blocked or not available. Use Upload from gallery instead.",
   cam_blocked: "The in-app camera is blocked, so SolarSense will use your phone's own camera instead.", cam_open_phone: "Open camera",
-  cam_allow_hint: "To use the in-app camera again, allow Camera for this site in your browser settings (the lock icon next to the address).", photo_n: "Photo {n}", risk_label: "If ignored:",
+  cam_allow_hint: "To use the in-app camera again, allow Camera for this site in your browser settings (the lock icon next to the address).",
+  cam_blocked_desk: "The camera is blocked. Click the icon to the left of the address, set Camera to Allow, and on Windows also turn on Settings > Privacy & security > Camera. Then tap Try again.",
+  cam_busy: "The camera didn't start. Close other apps that may be using it (Zoom, Teams, Camera), then tap Try again.",
+  cam_none: "No camera was found on this device. Use Upload from gallery instead.", cam_retry: "Try again", photo_n: "Photo {n}", risk_label: "If ignored:",
   err_busy: "SolarSense has used up its free AI allowance for now. The samples still work. Try your own photo again in a few minutes.",
   err_slow: "The AI took too long to answer. Please try again.", err_setup: "The AI isn't switched on for this app yet.",
   err_ai: "The AI couldn't do that just now. Please try again.", err_photo: "The AI couldn't read that photo. Try a clearer, closer one.",
@@ -333,10 +336,13 @@ $("#tray-go").addEventListener("click", () => {
 // In-app camera: opens the phone's or laptop's camera directly; several shots can be taken in a row.
 // If the browser blocks it (permission denied, in-app browsers like WhatsApp/Instagram, camera busy, or it never answers),
 // SolarSense falls back to the phone's own camera app, which needs no browser permission.
+// Phones and tablets have their own camera app to fall back to; laptops don't (the file input only opens a file picker there).
+const isMobile = () => matchMedia("(pointer: coarse)").matches || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 let camStream = null, camFacing = "environment", camBlocked = false, camTry = 0;
 const CAM_WAIT = 8000;
 navigator.permissions?.query?.({ name: "camera" }).then((st) => {
-  const upd = () => { camBlocked = st.state === "denied"; if (st.state === "granted") $("#cam-help").hidden = true; };
+  // Only a real "denied" on a phone skips straight to the phone's camera app; anything else is tried again on every tap.
+  const upd = () => { camBlocked = st.state === "denied" && isMobile(); if (st.state === "granted") { camBlocked = false; $("#cam-help").hidden = true; } };
   upd(); st.onchange = upd;
 }).catch(() => {});
 function stopStream() { camStream?.getTracks().forEach((t) => t.stop()); camStream = null; const v = $("#cam-video"); if (v) v.srcObject = null; }
@@ -366,25 +372,40 @@ async function startCamera(facing = camFacing) {
 }
 function camCount() { $("#cam-count").textContent = photos.length ? `${photos.length} / ${MAX_PHOTOS}` : ""; }
 function closeCamera() { camTry++; stopStream(); $("#cam-modal").hidden = true; document.body.style.overflow = ""; }
-function cameraFailed() {
-  closeCamera(); camBlocked = true;
+// Explain what actually went wrong, so the person knows what to fix.
+function cameraFailed(err) {
+  closeCamera();
+  const name = err?.name || "", mobile = isMobile();
+  const denied = name === "NotAllowedError" || name === "SecurityError";
+  if (denied && mobile) camBlocked = true; // next tap goes straight to the phone's own camera app
+  const key = name === "NotFoundError" || name === "OverconstrainedError" ? "cam_none"
+    : denied ? (mobile ? "cam_blocked" : "cam_blocked_desk") : "cam_busy";
+  $("#cam-help-msg").textContent = t(key);
+  $("#cam-help-hint").textContent = denied && mobile ? t("cam_allow_hint") : "";
+  $("#cam-help-hint").hidden = !(denied && mobile);
+  $("#cam-fallback").hidden = !mobile;
+  $("#cam-retry").hidden = key === "cam_none" || (denied && mobile);
   $("#cam-help").hidden = false;
   $("#cam-help").scrollIntoView({ behavior: reduced() ? "auto" : "smooth", block: "center" });
 }
-$("#shoot").addEventListener("click", async (e) => {
-  // No in-app camera possible: let the label open the phone's own camera app (input capture="environment").
-  if (camBlocked || !navigator.mediaDevices?.getUserMedia || !window.isSecureContext) return;
-  e.preventDefault();
+async function openCamera() {
   showError(""); $("#cam-help").hidden = true;
   $("#cam-modal").hidden = false; document.body.style.overflow = "hidden"; camCount();
-  try { await startCamera(); } catch (err) { console.warn("camera", err?.name, err?.message); if (!$("#cam-modal").hidden) cameraFailed(); }
+  try { await startCamera(); } catch (err) { console.warn("camera", err?.name, err?.message); if (!$("#cam-modal").hidden) cameraFailed(err); }
+}
+$("#shoot").addEventListener("click", (e) => {
+  // No in-app camera possible: let the label open the phone's own camera app (input capture="environment").
+  if ((camBlocked && isMobile()) || !navigator.mediaDevices?.getUserMedia || !window.isSecureContext) return;
+  e.preventDefault();
+  openCamera();
 });
+$("#cam-retry").addEventListener("click", () => { camBlocked = false; openCamera(); });
 $("#cam-fallback").addEventListener("click", () => { $("#cam-help").hidden = true; $("#cam").click(); });
 $("#cam-close").addEventListener("click", closeCamera);
 $("#cam-flip").addEventListener("click", async () => {
   const before = camFacing;
   try { await startCamera(before === "environment" ? "user" : "environment"); }
-  catch { try { await startCamera(before); } catch { cameraFailed(); } } // the other camera failed: go back to the one that worked
+  catch { try { await startCamera(before); } catch (err) { cameraFailed(err); } } // the other camera failed: go back to the one that worked
 });
 $("#cam-shoot").addEventListener("click", () => {
   const v = $("#cam-video"); if (!v.videoWidth) return;
